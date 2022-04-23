@@ -36,7 +36,11 @@ class Product extends Controller
         );
 
         echo $this->view->render("product", [
-            "head" => $head
+            "head" => $head,
+            "products" => (new \Source\Models\Product())
+                ->find()
+                ->limit(12)
+                ->fetch(true)
         ]);
     }
     public function single(?array $data): void

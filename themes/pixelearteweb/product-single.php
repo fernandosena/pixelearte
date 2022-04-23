@@ -40,8 +40,9 @@
                     </div>
                 </div>
             </div>
-            <form action="<?= url("/carrinho/add/{$product->id}")?>" method="post">
+            <form action="<?= url("/carrinho/add")?>" method="post">
                 <input type="hidden" name="type" value="add">
+                <input type="hidden" name="id" value="<?= $product->id ?>">
                 <div class="conteudo">
                     <div class="detalhes">
                         <div>
@@ -65,9 +66,16 @@
                         <div>
                             <label>Quantidade:</label>
                             <div class="qtd">
-                                <i class="fa-solid fa-plus" data-id="<?= $product->id ?>"></i>
-                                <input type="text" name="qtd" value="1" min="1" max="999" class="value<?= $product->id ?>">
-                                <i class="fa-solid fa-minus" data-id="<?= $product->id ?>"></i>
+                                <i class="fa-solid fa-plus"
+                                   data-id="<?= $product->id ?>"
+                                   data-value="<?= $product->id ?>"
+                                   data-url="<?= url("/carrinho/calc"); ?>"
+                                   data-type="add"></i>
+                                <input type="text" readonly name="qtd" value="1" min="1" max="999" class="value<?= $product->id ?>">
+                                <i class="fa-solid fa-minus"
+                                   data-id="<?= $product->id ?>"
+                                   data-url="<?= url("/carrinho/calc"); ?>"
+                                   data-type="del"></i>
                             </div>
                         </div>
                     </div>
@@ -77,9 +85,9 @@
                             <textarea placeholder="Observações" name="observation"></textarea>
                         </div>
                     </div>
-                    <div class="total">
+                    <div class="valor-total">
                         <div>
-                            <label>Total: R$ 40,00</label>
+                            <label>Total: <span class="subtotal<?= $product->id ?>"><?= price_symbol($product->price) ?></span></label>
                             <div class="btn-grupo">
                                 <button><i class="fa-solid fa-bag-shopping"></i> Adicionar ao carrinho</button>
                             </div>

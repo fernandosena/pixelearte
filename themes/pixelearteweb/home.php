@@ -1,15 +1,13 @@
 <?php $v->layout("_theme"); ?>
 <div id="banner-principal">
         <div class="slider item-unico">
-            <?php
-                for($i=1;$i <= 10; $i++):
-            ?>
+            <?php foreach ($banners as $banner): ?>
             <div>
-                <a href="">
-                    <img src="<?= theme("/assets/img/BannerHome.jpg")?>" alt="" title="">
+                <a href="<?= url("/produto/{$banner->product()->uri}")?>">
+                    <img src="<?= url("/storage/images/{$banner->image}")?>" alt="<?= $banner->product()->title ?>" title="<?= $banner->product()->title ?>">
                 </a>
             </div>
-            <?php endfor; ?>
+            <?php endforeach; ?>
         </div>
 </div>
 <div id="info">

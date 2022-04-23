@@ -141,6 +141,8 @@ body {
 #cabecalho .principal {
   background-color: #E8D1AF;
   padding: 10px 0; }
+  #cabecalho .principal .fa-bars {
+    display: none; }
   #cabecalho .principal .centro {
     display: flex;
     justify-content: space-between;
@@ -191,6 +193,14 @@ body {
       padding: 15px 10px; }
       #cabecalho .principal .bag #box-carrinho .msg-sem-produto {
         text-align: center; }
+      #cabecalho .principal .bag #box-carrinho .produtos-carrinho .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; }
+        #cabecalho .principal .bag #box-carrinho .produtos-carrinho .item div {
+          margin: 5px 0; }
+          #cabecalho .principal .bag #box-carrinho .produtos-carrinho .item div img {
+            width: 100px; }
       #cabecalho .principal .bag #box-carrinho .btn-grupo {
         text-align: center; }
         #cabecalho .principal .bag #box-carrinho .btn-grupo button {
@@ -372,7 +382,8 @@ body {
             margin: 15px 0 30px 0; }
           #produtos .centro .produtos div.item .dados .old_price p {
             margin-bottom: -5px;
-            text-decoration: line-through; }
+            text-decoration: line-through;
+            color: #ff6162; }
           #produtos .centro .produtos div.item .dados .price {
             display: flex;
             gap: 10px 15px;
@@ -488,20 +499,20 @@ body {
             font-family: "Roboto", sans-serif;
             min-height: 150px;
             max-height: 150px; }
-      #produto-singular .box-conteudo .centro .conteudo .total {
+      #produto-singular .box-conteudo .centro .conteudo .valor-total {
         padding: 10px 20px;
         border-top: 1px solid #ccc;
         margin: 0; }
-        #produto-singular .box-conteudo .centro .conteudo .total div {
+        #produto-singular .box-conteudo .centro .conteudo .valor-total div {
           margin: 10px 0;
           display: flex;
           align-items: center; }
-          #produto-singular .box-conteudo .centro .conteudo .total div label {
+          #produto-singular .box-conteudo .centro .conteudo .valor-total div label {
             font-weight: bolder;
             width: 50%; }
-          #produto-singular .box-conteudo .centro .conteudo .total div p {
+          #produto-singular .box-conteudo .centro .conteudo .valor-total div p {
             width: 50%; }
-          #produto-singular .box-conteudo .centro .conteudo .total div .btn-grupo button {
+          #produto-singular .box-conteudo .centro .conteudo .valor-total div .btn-grupo button {
             padding: 15px 20px; }
   #produto-singular h1 {
     text-align: center; }
@@ -572,6 +583,80 @@ body {
       #carrinho .tabela .centro table tfoot tr td:last-child {
         text-align: right; }
 
+#checkout {
+  margin: 60px 0; }
+  #checkout h1 {
+    text-align: center;
+    margin: 0 0 60px 0;
+    text-transform: uppercase; }
+  #checkout .centro form {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px 20px; }
+    #checkout .centro form div {
+      width: 100%;
+      padding: 5px; }
+      #checkout .centro form div h2 {
+        margin: 0 0 20px 0; }
+      #checkout .centro form div .card {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 30px 0; }
+        #checkout .centro form div .card .form_group {
+          display: flex;
+          justify-content: space-between; }
+          #checkout .centro form div .card .form_group div label {
+            display: block;
+            margin: 5px 0; }
+          #checkout .centro form div .card .form_group div input {
+            padding: 10px 20px;
+            border-radius: 7px;
+            border: 1px solid #cecece;
+            width: 100%;
+            font-size: 18px; }
+      #checkout .centro form div .box-resumo {
+        padding: 40px 20px 40px 20px;
+        background: #fef9da;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        text-align: center;
+        font-size: 16px;
+        transition: 0.3s;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1); }
+        #checkout .centro form div .box-resumo p {
+          text-align: right;
+          font-size: 10px;
+          margin-bottom: 0px; }
+        #checkout .centro form div .box-resumo h2 {
+          text-transform: uppercase;
+          text-align: center;
+          border-bottom: 1px dashed black;
+          border-top: 1px dashed black;
+          padding-top: 3%;
+          padding-bottom: 3%; }
+        #checkout .centro form div .box-resumo table {
+          width: 100%;
+          text-align: center; }
+          #checkout .centro form div .box-resumo table tfoot tr td {
+            padding: 10px 0; }
+          #checkout .centro form div .box-resumo table tfoot tr td:first-child {
+            text-align: left; }
+          #checkout .centro form div .box-resumo table tfoot tr td:last-child {
+            text-align: right; }
+        #checkout .centro form div .box-resumo .detalhes {
+          margin-top: 20px;
+          text-align: right; }
+          #checkout .centro form div .box-resumo .detalhes label {
+            display: block;
+            font-weight: bolder;
+            font-size: 18px; }
+            #checkout .centro form div .box-resumo .detalhes label span {
+              font-weight: normal; }
+      #checkout .centro form div .info {
+        text-align: center;
+        margin: 20px 0; }
+      #checkout .centro form div .btn-grupo {
+        text-align: right; }
+
 footer {
   margin-top: 90px; }
   footer .widget {
@@ -634,5 +719,185 @@ footer {
       text-decoration: none; }
       footer .footer a:hover {
         text-decoration: underline; }
+
+/*Mobile*/
+@media all and (max-width: 480px) {
+  #cabecalho .superior .centro nav ul {
+    justify-content: center; }
+    #cabecalho .superior .centro nav ul a.social {
+      display: none; }
+  #cabecalho .principal .fa-bars {
+    display: block;
+    font-size: 30px;
+    cursor: pointer;
+    text-align: right; }
+  #cabecalho .principal .centro {
+    display: block;
+    text-align: center; }
+    #cabecalho .principal .centro div {
+      margin: 10px 0; }
+    #cabecalho .principal .centro .pesquisa {
+      width: 100%; }
+      #cabecalho .principal .centro .pesquisa form input {
+        font-size: 17px;
+        padding: 10px 35px 10px 25px; }
+      #cabecalho .principal .centro .pesquisa form button {
+        padding: 0;
+        margin: 0; }
+        #cabecalho .principal .centro .pesquisa form button div {
+          margin: 0;
+          padding: 13px 10px; }
+          #cabecalho .principal .centro .pesquisa form button div i {
+            font-size: 20px; }
+    #cabecalho .principal .centro .bag {
+      display: none; }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #E8D1AF;
+    height: 100%;
+    z-index: 99;
+    margin: 0;
+    padding: 10px;
+    width: 50%; }
+    .menu .centro {
+      width: 100%; }
+      .menu .centro nav ul {
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%); }
+        .menu .centro nav ul li {
+          margin: 0; }
+          .menu .centro nav ul li ul {
+            position: initial;
+            display: none;
+            width: 100%;
+            z-index: 2;
+            margin: 0;
+            padding: 0; }
+            .menu .centro nav ul li ul div {
+              background-color: transparent;
+              border: none;
+              margin: 0;
+              padding: 0; }
+              .menu .centro nav ul li ul div a {
+                font-size: 17px; }
+                .menu .centro nav ul li ul div a li {
+                  padding: 0; }
+                  .menu .centro nav ul li ul div a li:hover {
+                    background-color: #E8D1AF; }
+
+  #banner-principal {
+    display: none; }
+
+  #info {
+    margin: 20px 0; }
+    #info .centro {
+      width: 90%;
+      display: block; }
+      #info .centro div {
+        margin: 10px 0; }
+
+  #produtos .centro {
+    display: block; }
+    #produtos .centro .filtro {
+      display: none; }
+    #produtos .centro .produtos {
+      display: block;
+      width: 100%; }
+      #produtos .centro .produtos .item {
+        margin: 20px 0; }
+
+  #banner-categoria {
+    width: 90%;
+    margin: 30px auto; }
+
+  #produto-singular {
+    margin: 30px 0; }
+    #produto-singular h1 {
+      margin-bottom: 20px; }
+    #produto-singular .box-conteudo .centro {
+      width: 90%; }
+      #produto-singular .box-conteudo .centro .images {
+        float: none;
+        width: 100%; }
+      #produto-singular .box-conteudo .centro form {
+        float: none; }
+        #produto-singular .box-conteudo .centro form .conteudo {
+          width: 100%;
+          float: none;
+          margin: 30px 0 0 0; }
+          #produto-singular .box-conteudo .centro form .conteudo .detalhes div {
+            display: block;
+            width: 100%; }
+            #produto-singular .box-conteudo .centro form .conteudo .detalhes div label {
+              width: 100%; }
+            #produto-singular .box-conteudo .centro form .conteudo .detalhes div p {
+              margin-top: 10px;
+              width: 100%; }
+          #produto-singular .box-conteudo .centro form .conteudo .observacoes div {
+            display: block;
+            width: 100%; }
+            #produto-singular .box-conteudo .centro form .conteudo .observacoes div label {
+              display: block;
+              width: 100%;
+              margin-bottom: 20px; }
+            #produto-singular .box-conteudo .centro form .conteudo .observacoes div textarea {
+              display: block;
+              width: 100%;
+              min-width: 100%;
+              max-width: 100%; }
+          #produto-singular .box-conteudo .centro form .conteudo .valor-total div {
+            display: block; }
+            #produto-singular .box-conteudo .centro form .conteudo .valor-total div label {
+              width: 100%;
+              display: block;
+              text-align: center; }
+
+  #carrinho .centro {
+    width: 95%; }
+    #carrinho .centro table thead tr th:first-child {
+      width: auto; }
+    #carrinho .centro table tbody tr td:first-child {
+      display: block; }
+      #carrinho .centro table tbody tr td:first-child a {
+        display: block !important; }
+        #carrinho .centro table tbody tr td:first-child a img {
+          background-color: red;
+          display: block;
+          margin: 0 auto;
+          width: 50px;
+          height: 50px; }
+        #carrinho .centro table tbody tr td:first-child a p {
+          display: block; }
+
+  #checkout .centro {
+    width: 90%; }
+    #checkout .centro form {
+      display: block; }
+      #checkout .centro form div .card .form_group {
+        display: block; }
+      #checkout .centro form .resumo .btn-grupo {
+        text-align: center; }
+
+  footer .widget .centro {
+    display: block; }
+    footer .widget .centro div {
+      margin: 20px 0; } }
+/*Teblet*/
+@media all and (max-width: 920px) {
+  #info .centro {
+    width: 90%;
+    gap: 10px 10px;
+    font-size: 14px; }
+    #info .centro div {
+      padding: 15px 10px; }
+
+  #produtos .centro .produtos {
+    grid-template-columns: 1fr 1fr; } }
 
 /*# sourceMappingURL=style.css.map */

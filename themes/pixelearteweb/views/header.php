@@ -5,11 +5,10 @@
                 <ul>
                     <a href=""><li>Central de ajuda</li></a>
                     <a href=""><li>Contato</li></a>
-                    <a href="https://api.whatsapp.com/<?= CONF_SOCIAL_WHATSAPP_LINK ?>" rel="nofollow" target="_blank"><li><i class="fa-brands fa-whatsapp"></i> <?= CONF_SOCIAL_WHATSAPP ?></li></a>
-                    <a href="https://www.facebook.com/<?= CONF_SOCIAL_FACEBOOK_PAGE ?>" rel="nofollow" target="_blank"><li><i class="fa-brands fa-facebook"></i></li></a>
-                    <a href="https://www.instagram.com/<?= CONF_SOCIAL_INSTAGRAM_PAGE ?>" rel="nofollow" target="_blank"><li><i class="fa-brands fa-instagram"></i></li></a>
-                    <a href="https://www.youtube.com/<?= CONF_SOCIAL_YOUTUBE_PAGE ?>" rel="nofollow" target="_blank"><li><i class="fa-brands fa-youtube"></i></li></a>
-                    <a href="https://br.pinterest.com/<?= CONF_SOCIAL_PINTEREST ?>" rel="nofollow" target="_blank"><li><i class="fa-brands fa-pinterest"></i></li></a>
+                    <a class="social" href="https://api.whatsapp.com/<?= CONF_SOCIAL_WHATSAPP_LINK ?>" rel="nofollow" target="_blank"><li><i class="fa-brands fa-whatsapp"></i> <?= CONF_SOCIAL_WHATSAPP ?></li></a>
+                    <a class="social" href="https://www.facebook.com/<?= CONF_SOCIAL_FACEBOOK_PAGE ?>" rel="nofollow" target="_blank"><li><i class="fa-brands fa-facebook"></i></li></a>
+                    <a class="social" href="https://www.instagram.com/<?= CONF_SOCIAL_INSTAGRAM_PAGE ?>" rel="nofollow" target="_blank"><li><i class="fa-brands fa-instagram"></i></li></a>
+                    <a class="social" href="https://www.youtube.com/<?= CONF_SOCIAL_YOUTUBE_PAGE ?>" rel="nofollow" target="_blank"><li><i class="fa-brands fa-youtube"></i></li></a>
                 </ul>
             </nav>
         </div>
@@ -30,15 +29,44 @@
                 </form>
             </div>
             <div class="bag">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <i class="fa-solid fa-chevron-down"></i>
+                <div class="icone">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
                 <div id="box-carrinho">
-                    <p class="msg-sem-produto">Nenhum produto adicionado ao carrinho</p>
-                    <div class="btn-grupo">
-                        <a href="<?= url("/carrinho") ?>"><button>Ver carrinho</button></a>
-                    </div>
+                    <?php
+                        if(!empty($_SESSION["compras"]["carrinho"])){
+                    ?>
+                            <div class="produtos-carrinho">
+                                <?php foreach ($_SESSION["compras"]["carrinho"] as $item): ?>
+                                    <div class="item">
+                                        <div>
+                                            <img src="<?= url("storage/images/{$item["image"]}")?>">
+                                        </div>
+                                        <div>
+                                            <h4><?= $item["title"] ?></h4>
+                                            <p><?= $item["value"] ?></p>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="btn-grupo">
+                                <a href="<?= url("/carrinho") ?>"><button>Ver carrinho</button></a>
+                                <a href="<?= url("/checkout") ?>"><button>Finalizar compra</button></a>
+                            </div>
+                    <?php
+                        }else{
+                    ?>
+                            <p class="msg-sem-produto">Nenhum produto adicionado ao carrinho</p>
+                            <div class="btn-grupo">
+                                <a href="<?= url("/carrinho") ?>"><button>Ver carrinho</button></a>
+                            </div>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
+            <i class="fa-solid fa-bars"></i>
         </div>
     </div>
 </header>

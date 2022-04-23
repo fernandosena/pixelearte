@@ -16,6 +16,7 @@ class Cart extends Controller
      * Web constructor.
      */
     private $cart;
+    static $total = 0;
     public function __construct()
     {
         parent::__construct(__DIR__ . "/../../../themes/" . CONF_VIEW_THEME . "/");
@@ -59,7 +60,9 @@ class Cart extends Controller
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
         $this->cart->add($data);
-        redirect("/carrinho");
+        if(empty($data["url"])){
+            redirect("/carrinho");
+        }
     }
 
     public function del(?array $data): void
@@ -67,5 +70,26 @@ class Cart extends Controller
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
         $this->cart->del($data);
         redirect("/carrinho");
+    }
+
+    public function calc(?array $data): void
+    {
+        $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+        $product = (new \Source\Models\Product())->findById($data["id"]);
+        $resultado = $product->price * $data["qtd"];
+        if($data["type"] == "add"){
+            $_SESSION["compras"]["carrinho"][$data["id"]]["qtd"] = $data["qtd"];
+            $_SESSION["compras"]["carrinho"][$data["id"]]["subtotal"] = $resultado;
+            $this->cart->atualizar();
+            $_SESSION["calculo"] = $_SESSION["calculo"] + $product->price;
+        }
+
+        if($data["type"] == "del"){
+            $_SESSION["compras"]["carrinho"][$data["id"]]["qtd"] = $data["qtd"];
+            $_SESSION["compras"]["carrinho"][$data["id"]]["subtotal"] = $resultado;
+            $this->cart->atualizar();
+            $_SESSION["calculo"] -= $product->price;
+        }
+        echo json_encode(["subtotal"=>price_symbol($resultado), "total"=>price_symbol($_SESSION["calculo"])]);
     }
 }

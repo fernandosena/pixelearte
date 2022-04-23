@@ -4,6 +4,7 @@ namespace Source\App\Web;
 
 use Source\Core\Controller;
 use Source\Models\Auth;
+use Source\Models\Banner;
 use Source\Models\Category;
 use Source\Models\Faq\Question;
 use Source\Models\Post;
@@ -45,6 +46,10 @@ class Web extends Controller
             "head" => $head,
             "categories" => (new Category())
                 ->find("type = 'product'")
+                ->fetch(true),
+            "banners" => (new Banner())
+                ->find()
+                ->order("position")
                 ->fetch(true),
             "products" => (new \Source\Models\Product())
                 ->find()

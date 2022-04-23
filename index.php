@@ -62,7 +62,8 @@ $route->get("/{uri}", "Product:single");
 $route->group(null);
 $route->get("/carrinho", "Cart:home");
 $route->get("/carrinho/add/{id}", "Cart:add");
-$route->post("/carrinho/add/{id}", "Cart:add");
+$route->post("/carrinho/add", "Cart:add");
+$route->post("/carrinho/calc", "Cart:calc");
 $route->get("/carrinho/del/{id}/{all}", "Cart:del");
 $route->post("/carrinho/del/{id}/{all}", "Cart:del");
 

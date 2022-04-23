@@ -77,17 +77,40 @@ $(function () {
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
 
-    $(".fa-plus").on("click", function () {
-        var campo = $(this).attr("data-id");
-        var valor = parseInt($(".value"+campo).val());
-        $(".value"+campo).val(valor+1);
-    });
+    $("[data-id]").click(function (e) {
+        var clicked = $(this);
+        var dataset = clicked.data();
+        var type = clicked.data("type");
 
-    $(".fa-minus").on("click", function () {
-        var campo = $(this).attr("data-id");
-        var valor = parseInt($(".value"+campo).val());
-        if(valor > 1){
-            $(".value"+campo).val(valor-1);
+        var id = clicked.data("id");
+        var number = $(".value"+id);
+        var valor = parseInt(number.val());
+        continuar = false;
+
+        if(type == "add"){
+            number.val(valor+=1);
+            continuar = true;
         }
-    })
+
+        if(type == "del"){
+            if(valor > 1){
+                number.val(valor-=1);
+                continuar = true;
+            }
+        }
+
+        dataset["qtd"] = valor;
+
+        if(continuar){
+            $.post(clicked.data("url"), dataset, function (response) {
+                //reload by error
+                if (response.reload) {
+                    window.location.reload();
+                }
+                //Balance
+                $(".subtotal"+id).text(response.subtotal);
+                $(".total").text(response.total);
+            }, "json");
+        }
+    });
 });

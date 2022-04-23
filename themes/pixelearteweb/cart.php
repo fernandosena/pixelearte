@@ -30,13 +30,20 @@
                                 </td>
                                 <td>
                                     <div class="qtd">
-                                        <i class="fa-solid fa-plus" data-id="<?= $item["id"] ?>"></i>
-                                        <input type="text" name="qtd" value="<?= $item["qtd"] ?>" max="999" class="value<?= $item["id"] ?>">
-                                        <i class="fa-solid fa-minus" data-id="<?= $item["id"] ?>"></i>
+                                        <i class="fa-solid fa-plus"
+                                           data-id="<?= $item["id"] ?>"
+                                           data-value="<?= $item["id"] ?>"
+                                           data-url="<?= url("/carrinho/calc"); ?>"
+                                           data-type="add"></i>
+                                        <input type="text" readonly name="qtd" value="<?= $item["qtd"] ?>" min="1" max="999" class="value<?= $item["id"] ?>">
+                                        <i class="fa-solid fa-minus"
+                                           data-id="<?= $item["id"] ?>"
+                                           data-url="<?= url("/carrinho/calc"); ?>"
+                                           data-type="del"></i>
                                     </div>
                                 </td>
                                 <td><?= price_symbol($item["value"]) ?></td>
-                                <td><?= price_symbol($item["subtotal"]) ?></td>
+                                <td><label class="subtotal<?= $item["id"] ?>"><?= price_symbol($item["subtotal"]) ?></label></td>
                                 <td>
                                     <div>
                                         <a href="<?= url("/carrinho/del/{$item["id"]}/all")?>"><i class="fa-solid fa-trash-can"></i> Excluir</a>
@@ -49,7 +56,10 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="2">Subtotal: R$ 120.00</td>
+                        <?php
+                            $_SESSION["calculo"] = $_SESSION["compras"]["total"];
+                        ?>
+                        <td colspan="2">Subtotal: <span class="total"><?= price_symbol($_SESSION["compras"]["total"]) ?></span></td>
                         <td colspan="3" class="btn-grupo">
                             <a href="<?= url("/checkout") ?>"><button>Finalizar compra</button></a>
                         </td>

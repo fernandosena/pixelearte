@@ -6,4 +6,11 @@ $(function () {
             $("#box-carrinho").fadeIn(300);
         }
     });
+    $(".fa-bars").on("click", function () {
+        if($(".menu").is(':visible') == true){
+            $(".menu").fadeOut(300);
+        }else{
+            $(".menu").fadeIn(300);
+        }
+    });
 });

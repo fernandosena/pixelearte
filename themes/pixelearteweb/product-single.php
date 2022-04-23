@@ -6,38 +6,18 @@
         <div class="centro">
             <div class="images">
                 <div class="slider-for">
+                    <?php for($i=1;$i<=5;$i++): ?>
                     <div>
-                        <img src="<?= theme("/assets/img/BannerHome.jpg")?>" alt="" title="">
+                        <img src="<?= url("/storage/images/2022/04/produto01.jpg") ?>" alt="" title="">
                     </div>
-                    <div>
-                        <img src="<?= theme("/assets/img/BannerHome.jpg")?>" alt="" title="">
-                    </div>
-                    <div>
-                        <img src="<?= theme("/assets/img/BannerHome.jpg")?>" alt="" title="">
-                    </div>
-                    <div>
-                        <img src="<?= theme("/assets/img/BannerHome.jpg")?>" alt="" title="">
-                    </div>
-                    <div>
-                        <img src="<?= theme("/assets/img/BannerHome.jpg")?>" alt="" title="">
-                    </div>
+                    <?php endfor; ?>
                 </div>
                 <div class="slider slider-nav">
-                    <div>
-                        <img src="<?= theme("/assets/img/BannerHome.jpg")?>" alt="" title="">
-                    </div>
-                    <div>
-                        <img src="<?= theme("/assets/img/BannerHome.jpg")?>" alt="" title="">
-                    </div>
-                    <div>
-                        <img src="<?= theme("/assets/img/BannerHome.jpg")?>" alt="" title="">
-                    </div>
-                    <div>
-                        <img src="<?= theme("/assets/img/BannerHome.jpg")?>" alt="" title="">
-                    </div>
-                    <div>
-                        <img src="<?= theme("/assets/img/BannerHome.jpg")?>" alt="" title="">
-                    </div>
+                    <?php for($i=1;$i<=5;$i++): ?>
+                        <div>
+                            <img src="<?= url("/storage/images/2022/04/produto01.jpg") ?>" alt="" title="">
+                        </div>
+                    <?php endfor; ?>
                 </div>
             </div>
             <form action="<?= url("/carrinho/add")?>" method="post">
@@ -70,7 +50,8 @@
                                    data-id="<?= $product->id ?>"
                                    data-value="<?= $product->id ?>"
                                    data-url="<?= url("/carrinho/calc"); ?>"
-                                   data-type="add"></i>
+                                   data-type="add"
+                                ></i>
                                 <input type="text" readonly name="qtd" value="1" min="1" max="999" class="value<?= $product->id ?>">
                                 <i class="fa-solid fa-minus"
                                    data-id="<?= $product->id ?>"

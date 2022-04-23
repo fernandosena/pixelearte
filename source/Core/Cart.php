@@ -11,7 +11,6 @@ class Cart
     public function __construct()
     {
         $this->session = (new Session());
-//        $this->session->destroy();
     }
 
     public function add($data)

@@ -16,7 +16,6 @@ class Cart extends Controller
      * Web constructor.
      */
     private $cart;
-    static $total = 0;
     public function __construct()
     {
         parent::__construct(__DIR__ . "/../../../themes/" . CONF_VIEW_THEME . "/");
@@ -78,16 +77,20 @@ class Cart extends Controller
         $product = (new \Source\Models\Product())->findById($data["id"]);
         $resultado = $product->price * $data["qtd"];
         if($data["type"] == "add"){
-            $_SESSION["compras"]["carrinho"][$data["id"]]["qtd"] = $data["qtd"];
-            $_SESSION["compras"]["carrinho"][$data["id"]]["subtotal"] = $resultado;
-            $this->cart->atualizar();
+            if(!empty($data["save"]) && $data["save"] == true){
+                $_SESSION["compras"]["carrinho"][$data["id"]]["qtd"] = $data["qtd"];
+                $_SESSION["compras"]["carrinho"][$data["id"]]["subtotal"] = $resultado;
+                $this->cart->atualizar();
+            }
             $_SESSION["calculo"] = $_SESSION["calculo"] + $product->price;
         }
 
         if($data["type"] == "del"){
-            $_SESSION["compras"]["carrinho"][$data["id"]]["qtd"] = $data["qtd"];
-            $_SESSION["compras"]["carrinho"][$data["id"]]["subtotal"] = $resultado;
-            $this->cart->atualizar();
+            if(!empty($data["save"]) && $data["save"] == true){
+                $_SESSION["compras"]["carrinho"][$data["id"]]["qtd"] = $data["qtd"];
+                $_SESSION["compras"]["carrinho"][$data["id"]]["subtotal"] = $resultado;
+                $this->cart->atualizar();
+            }
             $_SESSION["calculo"] -= $product->price;
         }
         echo json_encode(["subtotal"=>price_symbol($resultado), "total"=>price_symbol($_SESSION["calculo"])]);

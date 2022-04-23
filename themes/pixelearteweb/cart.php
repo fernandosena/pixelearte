@@ -34,12 +34,14 @@
                                            data-id="<?= $item["id"] ?>"
                                            data-value="<?= $item["id"] ?>"
                                            data-url="<?= url("/carrinho/calc"); ?>"
-                                           data-type="add"></i>
+                                           data-type="add"
+                                           data-save="true"></i>
                                         <input type="text" readonly name="qtd" value="<?= $item["qtd"] ?>" min="1" max="999" class="value<?= $item["id"] ?>">
                                         <i class="fa-solid fa-minus"
                                            data-id="<?= $item["id"] ?>"
                                            data-url="<?= url("/carrinho/calc"); ?>"
-                                           data-type="del"></i>
+                                           data-type="del"
+                                           data-save="true"></i>
                                     </div>
                                 </td>
                                 <td><?= price_symbol($item["value"]) ?></td>

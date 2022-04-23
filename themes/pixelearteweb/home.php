@@ -37,7 +37,7 @@
             ?>
                 <div>
                     <a href="">
-                        <img src="<?= theme("/assets/img/carrossel01.jpg")?>" alt="" title="">
+                        <img src="<?= url("/storage/images/2022/04/produto01.jpg")?>" alt="" title="">
                         <h3>Categoria</h3>
                     </a>
                 </div>

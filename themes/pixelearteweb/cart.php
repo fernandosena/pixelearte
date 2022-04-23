@@ -78,6 +78,7 @@
             </div>
         </div>
     </div>
+    <?php if(!empty($relateds)): ?>
     <div class="titulo">
         <div class="centro">
             <h4>Veja também</h4>
@@ -86,10 +87,19 @@
     <div id="produtos" class="produtos-mini">
         <div class="centro">
             <div class="produtos">
-                <?php for($i=1;$i<=5;$i++): ?>
-                    <?= $v->insert("inc/product"); ?>
-                <?php endfor; ?>
+                <?php foreach ($relateds as $related): ?>
+                    <?= $v->insert("inc/product", [
+                        "id" => $related->id,
+                        "title" => $related->title,
+                        "uri" => $related->uri,
+                        "image" => $related->image,
+                        "old_price" => $related->old_price,
+                        "price" => $related->price,
+                        "qtd" => $related->quantity,
+                    ]); ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
+    <?php endif; ?>
 </main>

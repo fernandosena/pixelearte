@@ -39,7 +39,7 @@
                         "uri" => $product->uri,
                         "details" => $product->details,
                         "qtd" => $product->quantity,
-                        "old_price" => 100,
+                        "old_price" => $product->old_price,
                         "price" => $product->price,
                     ]); ?>
             <?php

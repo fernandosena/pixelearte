@@ -38,7 +38,11 @@ class Cart extends Controller
 
         echo $this->view->render("cart", [
             "head" => $head,
-            "products" => $this->cart->productList()
+            "products" => $this->cart->productList(),
+            "relateds" => (new \Source\Models\Product())
+                ->find()
+                ->limit(5)
+                ->fetch(true)
         ]);
     }
 
@@ -52,6 +56,10 @@ class Cart extends Controller
         );
         echo $this->view->render("checkout", [
             "head" => $head,
+            "relateds" => (new \Source\Models\Product())
+                ->find()
+                ->limit(5)
+                ->fetch(true)
         ]);
     }
 

@@ -50,9 +50,14 @@ class Product extends Controller
             theme("/assets/images/share.jpg")
         );
 
+        $product = (new \Source\Models\Product())->findByUri($data["uri"]);
         echo $this->view->render("product-single", [
             "head" => $head,
-            "product"=> (new \Source\Models\Product())->findByUri($data["uri"])
+            "product"=> $product,
+            "relateds" => (new \Source\Models\Product())
+                ->find("category = :c AND id != :id", "c={$product->category}&id={$product->id}")
+                ->limit(5)
+            ->fetch(true)
         ]);
     }
 }

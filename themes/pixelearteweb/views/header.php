@@ -19,8 +19,8 @@
                 <a href="<?= url() ?>"><img src="<?= theme("/assets/img/logo.png") ?>" alt="<?= CONF_SITE_NAME ?>" title="<?= CONF_SITE_NAME ?>"></a>
             </div>
             <div class="pesquisa">
-                <form action="">
-                    <input type="text" id="busca" name="q" placeholder="O que você está procurando?">
+                <form action="<?= url("/produtos/buscar")?>" method="post">
+                    <input type="text" id="busca" name="s" placeholder="O que você está procurando?">
                     <button type="submit">
                         <div>
                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -66,7 +66,9 @@
                     ?>
                 </div>
             </div>
-            <i class="fa-solid fa-bars"></i>
+            <div class="bar">
+                <i class="fa-solid fa-bars"></i>
+            </div>
         </div>
     </div>
 </header>

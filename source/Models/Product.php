@@ -19,6 +19,14 @@ class Product extends Model
         return $this;
     }
 
+    public function findProduct(?string $terms = null, ?string $params = null, string $columns = "*")
+    {
+//        $terms = "" . ($terms ? " AND {$terms}" : "");
+//        $params = "" . ($params ? "&{$params}" : "");
+
+        return parent::find($terms, $params, $columns);
+    }
+
     public function findByUri($uri)
     {
         return $this->find("uri = :u", "u={$uri}")->fetch();

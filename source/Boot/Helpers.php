@@ -388,7 +388,7 @@ function image(?string $image, int $width, int $height = null): ?string
         if (filter_var($image, FILTER_VALIDATE_URL)) {
             return url() . "/".(new \Source\Support\Thumb())->make(str_replace(url()."/", "", $image), $width, $height);
         }
-        return url() . "/" . (new \Source\Support\Thumb())->make(CONF_UPLOAD_DIR."/{$image}", $width, $height);
+        return url() . "/" . (new \Source\Support\Thumb())->make("{$image}", $width, $height);
     }
 
     return url() . "/" . (new \Source\Support\Thumb())->make(CONF_UPLOAD_DIR."/images/avatar.jpg", $width, $height);

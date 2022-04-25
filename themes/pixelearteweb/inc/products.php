@@ -2,8 +2,8 @@
     <div class="centro">
         <div class="filtro">
             <div class="pesquisa">
-                <form action="">
-                    <input type="text" id="busca" name="q" placeholder="Filtrar:">
+                <form action="<?= url("/produtos/categoria")?>" method="post">
+                    <input type="text" id="busca" name="s" placeholder="Filtrar:">
                     <button type="submit">
                         <div>
                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -12,12 +12,12 @@
                 </form>
                 <div class="box-filtro">
                     <nav>
-                        <ul>
+                        <ul id="ul-categoria">
                             <?php
                                 if(!empty($categories)):
                                     foreach ($categories as $category):
                             ?>
-                                <a href="<?= url("/categoria/{$category->uri}") ?>"><li><?= $category->title ?></li></a>
+                                <a href="<?= url("/produtos/categoria/{$category->uri}") ?>"><li><?= $category->title ?></li></a>
                             <?php
                                     endforeach;
                                 endif;

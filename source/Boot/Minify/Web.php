@@ -21,6 +21,7 @@ if (strpos(url(), "localhost")) {
 
     //SAHARED
     $minJS->add(__DIR__ . "/../../../shared/plugins/jquery-3.6.0/jquery-3.6.0.min.js");
+    $minJS->add(__DIR__ . "/../../../shared/plugins/jquery.form-4.3.0/jquery.form.min.js");
     $minJS->add(__DIR__ . "/../../../shared/plugins/slick-1.8.1/slick/slick.min.js");
     $minJS->add(__DIR__ . "/../../../shared/scripts/script.js");
 

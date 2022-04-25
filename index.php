@@ -40,8 +40,16 @@ $route->get("/recuperar", "Web:forget");
 $route->post("/recuperar", "Web:forget");
 $route->get("/recuperar/{code}", "Web:reset");
 $route->post("/recuperar/resetar", "Web:reset");
-$route->get("/produtos", "Product:home");
 $route->get("/checkout", "Cart:checkout");
+$route->post("/checkout", "Cart:checkout");
+
+$route->group("/produtos");
+$route->get("/", "Product:home");
+$route->get("/categoria/{category}", "Product:category");
+$route->get("/categoria/{category}/{page}", "Product:category");
+$route->post("/categoria", "Product:category");
+$route->post("/buscar", "Product:search");
+$route->get("/buscar/{search}/{page}", "Product:search");
 
 //optin
 $route->group(null);

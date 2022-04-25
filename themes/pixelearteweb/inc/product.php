@@ -1,6 +1,7 @@
 <div class="item">
     <a href="<?= url("/produto/{$uri}") ?>">
-        <img src="<?= url("/storage/images/{$image}")?>" alt="" title="">
+        <img src="<?= image("images/{$image}", 239, 239)?>" alt="<?= ($title) ?? null ?>"
+             title="<?= ($title) ?? null ?>" width="239" height="239">
         <h2><?= ($title) ?? null ?></h2>
     </a>
     <div class="dados">

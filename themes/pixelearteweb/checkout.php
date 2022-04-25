@@ -2,7 +2,7 @@
 <main id="checkout">
     <h1>Checkout de finalização</h1>
     <div class="centro">
-        <form action="" method="post">
+        <form action="<?= url("/checkout") ?>" method="post">
             <div>
                 <h2>Suas informações</h2>
                     <div class="card">
@@ -35,27 +35,27 @@
                         <div class="form_group">
                             <div>
                                 <label>Estado</label>
-                                <input type="text" name="first_name" placeholder="Estado">
+                                <input type="text" name="estado" placeholder="Estado">
                             </div>
                             <div>
                                 <label>Cidade</label>
-                                <input type="text" name="last_name" placeholder="Cidade">
+                                <input type="text" name="cidade" placeholder="Cidade">
                             </div>
                         </div>
                         <div class="form_group">
                             <div>
-                                <label>CEP</label>
-                                <input type="text" name="cep" placeholder="CEP">
+                                <label>CEP*</label>
+                                <input type="text" name="cep" placeholder="CEP" required>
                             </div>
                             <div>
-                                <label>Número</label>
-                                <input type="text" name="numero" placeholder="Número">
+                                <label>Número*</label>
+                                <input type="text" name="numero" placeholder="Número" required>
                             </div>
                         </div>
                         <div class="form_group">
                             <div>
                                 <label>Endereço</label>
-                                <input type="text" name="email" placeholder="Endereço">
+                                <input type="text" name="endereco" placeholder="Endereço">
                             </div>
                         </div>
                     </div>

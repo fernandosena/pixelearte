@@ -17,7 +17,7 @@ define("CONF_URL_TEST", "http://localhost/pixelearte");
  * SITE
  */
 define("CONF_SITE_NAME", "Pixel&Arte");
-define("CONF_SITE_TITLE", "Gerencie suas contas com o melhor café");
+define("CONF_SITE_TITLE", "Mais que uma gráfica");
 define("CONF_SITE_DESC",
     "O ".CONF_SITE_NAME." é um gerenciador de contas simples, poderoso e gratuito. O prazer de tomar um café e ter o controle total de suas contas.");
 define("CONF_SITE_LANG", "pt_BR");
@@ -44,8 +44,8 @@ define("CONF_SOCIAL_GOOGLE_PAGE", "5555555555");
 define("CONF_SOCIAL_GOOGLE_AUTHOR", "5555555555");
 define("CONF_SOCIAL_INSTAGRAM_PAGE", "pixelearteoficial");
 define("CONF_SOCIAL_YOUTUBE_PAGE", "youtube");
-define("CONF_SOCIAL_WHATSAPP", "(11) 94174-7686");
-define("CONF_SOCIAL_WHATSAPP_LINK", "send?phone=5511941747686&text=Olá, vim do site e queria saber sobre sesu produtos e serviços");
+define("CONF_SOCIAL_WHATSAPP", "11941747686");
+define("CONF_SOCIAL_WHATSAPP_LINK", "send?phone=55".CONF_SOCIAL_WHATSAPP."&text=Olá, vim do site e queria saber sobre seus produtos e serviços");
 define("CONF_SOCIAL_PINTEREST", "pinterest");
 
 /**

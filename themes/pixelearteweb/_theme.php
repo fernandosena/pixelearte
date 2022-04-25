@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="pt-br"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="pt-br"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="pt-br"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="pt-br"> <!--<![endif]-->
 <head>
     <meta charset="UTF-8">
-    <meta name="mit" content="2019-09-05T13:58:49-03:00+28440">
+    <meta name="mit" content="2022-04-23T13:58:49-03:00+28440">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-
     <?= $head; ?>
-
     <link rel="icon" type="image/png" href="<?= theme("/assets/img/favicon.png"); ?>"/>
     <link rel="stylesheet" href="<?= theme("/assets/style.css"); ?>"/>
 </head>

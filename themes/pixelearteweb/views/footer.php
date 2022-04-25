@@ -18,7 +18,7 @@
                <h3>Fale conosco</h3>
                <div class="endereco">
                    <p><i class="fa-solid fa-location-dot"></i></p>
-                   <p>Magalhães Lemos, Nº 203,  05207-130 - São Paulo - SP</p>
+                   <address>Magalhães Lemos, Nº 203,  05207-130 - São Paulo - SP</address>
                </div>
                <div class="email">
                    <p><i class="fa-solid fa-envelope"></i></p>

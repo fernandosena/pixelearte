@@ -29,6 +29,11 @@ class Category extends Model
         return $find->fetch();
     }
 
+    public function product(): Product
+    {
+        return (new Product())->find("category = :id", "id={$this->id}");
+    }
+
     /**
      * @return Post
      */

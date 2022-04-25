@@ -1,6 +1,6 @@
-$(document).ready(function() {
+window.onload = function () {
     $(".ajax_load").fadeOut(800);
-});
+};
 $(function () {
     $('.item-unico').slick({
         arrows: true,

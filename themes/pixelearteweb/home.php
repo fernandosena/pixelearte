@@ -36,7 +36,7 @@
                 for($i=1;$i <= 10; $i++):
             ?>
                 <div>
-                    <a href="">
+                    <a href="<?= url("/produtos/categoria/cartoes-de-visita") ?>">
                         <img src="<?= url("/storage/images/2022/04/produto01.jpg")?>" alt="" title="">
                         <h3>Categoria</h3>
                     </a>

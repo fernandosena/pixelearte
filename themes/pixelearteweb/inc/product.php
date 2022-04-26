@@ -1,6 +1,6 @@
 <div class="item">
     <a href="<?= url("/produto/{$uri}") ?>">
-        <img src="<?= image("images/{$image}", 239, 239)?>" alt="<?= ($title) ?? null ?>"
+        <img src="<?= image("{$image}", 239, 239)?>" alt="<?= ($title) ?? null ?>"
              title="<?= ($title) ?? null ?>" width="239" height="239">
         <h2><?= ($title) ?? null ?></h2>
     </a>

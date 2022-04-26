@@ -41,7 +41,7 @@
                                 <?php foreach ($_SESSION["compras"]["carrinho"] as $item): ?>
                                     <div class="item">
                                         <div>
-                                            <img src="<?= url("storage/images/{$item["image"]}")?>">
+                                            <img src="<?= image($item["image"], 350)?>" alt="<?= $item["title"] ?>" title="<?= $item["title"] ?>">
                                         </div>
                                         <div>
                                             <h4><?= $item["title"] ?></h4>

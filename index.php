@@ -131,6 +131,21 @@ $route->post("/control/plan", "Control:plan");
 $route->get("/control/plan/{plan_id}", "Control:plan");
 $route->post("/control/plan/{plan_id}", "Control:plan");
 
+//product
+$route->get("/product/home", "Product:home");
+$route->post("/product/home", "Product:home");
+$route->get("/product/home/{search}/{page}", "Product:home");
+$route->get("/product/post", "Product:product");
+$route->post("/product/post", "Product:product");
+$route->get("/product/post/{post_id}", "Product:product");
+$route->post("/product/post/{post_id}", "Product:product");
+$route->get("/product/categories", "Product:categories");
+$route->get("/product/categories/{page}", "Product:categories");
+$route->get("/product/category", "Product:category");
+$route->post("/product/category", "Product:category");
+$route->get("/product/category/{category_id}", "Product:category");
+$route->post("/product/category/{category_id}", "Product:category");
+
 //blog
 $route->get("/blog/home", "Blog:home");
 $route->post("/blog/home", "Blog:home");

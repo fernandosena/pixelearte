@@ -24,7 +24,7 @@
                             <tr>
                                 <td>
                                     <a href="<?= url("produto/{$item["uri"]}") ?>">
-                                        <img src="<?= url("/storage/images/{$item["image"]}")?>" alt="" title="">
+                                        <img src="<?= image($item["image"], 150)?>" alt="" title="">
                                         <p><?= $item["title"] ?></p>
                                     </a>
                                 </td>

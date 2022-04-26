@@ -68,8 +68,8 @@ define("CONF_PASSWD_OPTION", ["cost" => 10]);
 define("CONF_VIEW_PATH", __DIR__ . "/../../shared/views");
 define("CONF_VIEW_EXT", "php");
 define("CONF_VIEW_THEME", "pixelearteweb");
-define("CONF_VIEW_APP", "cafeapp");
-define("CONF_VIEW_ADMIN", "cafeadm");
+define("CONF_VIEW_APP", "pixeleartepp");
+define("CONF_VIEW_ADMIN", "pixelearteadm");
 
 /**
  * UPLOAD

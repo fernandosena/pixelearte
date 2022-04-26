@@ -42,7 +42,11 @@ class Cart extends Controller
             "relateds" => (new \Source\Models\Product())
                 ->find()
                 ->limit(5)
-                ->fetch(true)
+                ->fetch(true),
+            "track" => (object)[
+                "fb" => "AddToCart",
+                "aw" => "AW-10891322072/QegUCKWd4LYDENjFscko"
+            ]
         ]);
     }
 
@@ -100,7 +104,11 @@ class Cart extends Controller
             "relateds" => (new \Source\Models\Product())
                 ->find()
                 ->limit(5)
-                ->fetch(true)
+                ->fetch(true),
+            "track" => (object)[
+                "fb" => "InitiateCheckout",
+                "aw" => "AW-10891322072/fqCjCMHYkrcDENjFscko"
+            ]
         ]);
     }
 

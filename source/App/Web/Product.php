@@ -67,7 +67,11 @@ class Product extends Controller
             "relateds" => (new \Source\Models\Product())
                 ->find("category = :c AND id != :id", "c={$product->category}&id={$product->id}")
                 ->limit(5)
-            ->fetch(true)
+            ->fetch(true),
+            "track" => (object)[
+                "fb" => "ViewContent",
+                "aw" => "AW-10891322072/5Im3CI_J4LYDENjFscko"
+            ]
         ]);
     }
 
@@ -161,7 +165,10 @@ class Product extends Controller
             "head" => $head,
             "title" => "PESQUISA POR: {$search}",
             "products" => $productSearch->limit($pager->limit())->offset($pager->offset())->fetch(true),
-            "paginator" => $pager->render()
+            "paginator" => $pager->render(),
+            "track" => (object)[
+                "fb" => "Search",
+            ]
         ]);
     }
 }

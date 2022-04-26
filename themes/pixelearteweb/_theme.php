@@ -7,12 +7,46 @@
     <meta charset="UTF-8">
     <meta name="mit" content="2022-04-23T13:58:49-03:00+28440">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="facebook-domain-verification" content="k76pdhc5f8j82b40kg5mo0ds6i03dv" />
     <?= $head; ?>
-    <link rel="icon" type="image/png" href="<?= theme("/assets/img/favicon.png"); ?>"/>
+    <link rel="icon" type="image/png" href="<?= url("/storage/images/favicon.png"); ?>"/>
     <link rel="stylesheet" href="<?= theme("/assets/style.css"); ?>"/>
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '703560004327986');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+                   src="https://www.facebook.com/tr?id=703560004327986&ev=PageView&noscript=1"
+        /></noscript>
+    <!-- End Meta Pixel Code -->
+    <!-- Global site tag (gtag.js) - Google Ads: 10891322072 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10891322072"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-10891322072');
+    </script>
 </head>
 <body>
-
+<?php if (!empty($track)): ?>
+    <?php $v->start("scripts"); ?>
+    <script>
+        fbq('track', '<?= $track->fb;?>');
+        gtag('event', 'conversion', {'send_to': '<?= $track->aw;?>'});
+    </script>
+    <?php $v->end(); ?>
+<?php endif; ?>
 <div class="ajax_load">
     <div class="ajax_load_box">
         <div class="ajax_load_box_circle">

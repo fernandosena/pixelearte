@@ -10,9 +10,9 @@
             return "<a class=\"icon-{$icon} radius {$active}\" href=\"{$url}\">{$title}</a>";
         };
 
-        echo $nav("pencil-square-o", "product/home", "Produto");
-        echo $nav("bookmark", "product/categories", "Categorias");
-        echo $nav("plus-circle", "product/post", "Novo Produto");
+        echo $nav("pencil-square-o", "products/home", "Produto");
+        echo $nav("bookmark", "products/categories", "Categorias");
+        echo $nav("plus-circle", "products/product", "Novo Produto");
         ?>
 
         <?php if (!empty($post->cover)): ?>

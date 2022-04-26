@@ -131,20 +131,20 @@ $route->post("/control/plan", "Control:plan");
 $route->get("/control/plan/{plan_id}", "Control:plan");
 $route->post("/control/plan/{plan_id}", "Control:plan");
 
-//product
-$route->get("/product/home", "Product:home");
-$route->post("/product/home", "Product:home");
-$route->get("/product/home/{search}/{page}", "Product:home");
-$route->get("/product/post", "Product:product");
-$route->post("/product/post", "Product:product");
-$route->get("/product/post/{post_id}", "Product:product");
-$route->post("/product/post/{post_id}", "Product:product");
-$route->get("/product/categories", "Product:categories");
-$route->get("/product/categories/{page}", "Product:categories");
-$route->get("/product/category", "Product:category");
-$route->post("/product/category", "Product:category");
-$route->get("/product/category/{category_id}", "Product:category");
-$route->post("/product/category/{category_id}", "Product:category");
+//products
+$route->get("/products/home", "Product:home");
+$route->post("/products/home", "Product:home");
+$route->get("/products/home/{search}/{page}", "Product:home");
+$route->get("/products/product", "Product:product");
+$route->post("/products/product", "Product:product");
+$route->get("/products/product/{product_id}", "Product:product");
+$route->post("/products/product/{product_id}", "Product:product");
+$route->get("/products/categories", "Product:categories");
+$route->get("/products/categories/{page}", "Product:categories");
+$route->get("/products/category", "Product:category");
+$route->post("/products/category", "Product:category");
+$route->get("/products/category/{category_id}", "Product:category");
+$route->post("/products/category/{category_id}", "Product:category");
 
 //blog
 $route->get("/blog/home", "Blog:home");

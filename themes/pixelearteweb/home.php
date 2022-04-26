@@ -1,15 +1,17 @@
 <?php $v->layout("_theme"); ?>
+<?php if($banners): ?>
 <div id="banner-principal">
-        <div class="slider item-unico">
-            <?php foreach ($banners as $banner): ?>
-            <div>
-                <a href="<?= url("/produto/{$banner->product()->uri}")?>">
-                    <img src="<?= url("/storage/images/{$banner->image}")?>" alt="<?= $banner->product()->title ?>" title="<?= $banner->product()->title ?>">
-                </a>
-            </div>
-            <?php endforeach; ?>
+    <div class="slider item-unico">
+        <?php foreach ($banners as $banner): ?>
+        <div>
+            <a href="<?= url("/produto/{$banner->product()->uri}")?>">
+                <img src="<?= image($banner->image, 1280)?>" alt="<?= $banner->product()->title ?>" title="<?= $banner->product()->title ?>">
+            </a>
         </div>
+        <?php endforeach; ?>
+    </div>
 </div>
+<?php endif; ?>
 <div id="info">
     <div class="centro">
         <div>

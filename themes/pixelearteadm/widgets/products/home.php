@@ -1,5 +1,5 @@
 <?php $v->layout("_admin"); ?>
-<?php $v->insert("widgets/product/sidebar.php"); ?>
+<?php $v->insert("widgets/products/sidebar.php"); ?>
 
 <section class="dash_content_app">
     <header class="dash_content_app_header">
@@ -14,7 +14,7 @@
         <section>
             <div class="app_blog_home">
                 <?php if (!$products): ?>
-                    <div class="message info icon-info">Ainda não existem artigos cadastrados no blog.</div>
+                    <div class="message info icon-info">Ainda não existem produtos cadastrados no sistema.</div>
                 <?php else: ?>
                     <?php foreach ($products as $product):
                         $productCover = ($product->image ? image($product->image, 300) : "");
@@ -39,13 +39,13 @@
 
                             <div class="actions">
                                 <a class="icon-pencil btn btn-blue" title=""
-                                   href="<?= url("/admin/product/post/{$product->id}"); ?>">Editar</a>
+                                   href="<?= url("/admin/products/product/{$product->id}"); ?>">Editar</a>
 
                                 <a class="icon-trash-o btn btn-red" title="" href="#"
-                                   data-post="<?= url("/admin/product/post"); ?>"
+                                   data-post="<?= url("/admin/products/product"); ?>"
                                    data-action="delete"
                                    data-confirm="Tem certeza que deseja deletar esse produto?"
-                                   data-post_id="<?= $product->id; ?>">Deletar</a>
+                                   data-product_id="<?= $product->id; ?>">Deletar</a>
                             </div>
                         </article>
                     <?php endforeach; ?>

@@ -6,18 +6,26 @@
         <div class="centro">
             <div class="images">
                 <div class="slider-for">
-                    <?php for($i=1;$i<=5;$i++): ?>
-                    <div>
-                        <img src="<?= url("/storage/images/2022/04/produto01.jpg") ?>" alt="" title="">
-                    </div>
-                    <?php endfor; ?>
-                </div>
-                <div class="slider slider-nav">
-                    <?php for($i=1;$i<=5;$i++): ?>
+                    <?php if(!$product->images()): ?>
+                        <div>
+                            <img src="<?= image($product->image, 350) ?>" alt="<?= $product->title ?>" title="<?= $product->title ?>">
+                        </div>
+                    <?php else: ?>
+                        <?php for($i=1;$i<=5;$i++): ?>
                         <div>
                             <img src="<?= url("/storage/images/2022/04/produto01.jpg") ?>" alt="" title="">
                         </div>
-                    <?php endfor; ?>
+                        <?php endfor; ?>
+                    <?php endif; ?>
+                </div>
+                <div class="slider slider-nav">
+                    <?php if($product->images()): ?>
+                        <?php for($i=1;$i<=5;$i++): ?>
+                            <div>
+                                <img src="<?= url("/storage/images/2022/04/produto01.jpg") ?>" alt="" title="">
+                            </div>
+                        <?php endfor; ?>
+                    <?php endif; ?>
                 </div>
             </div>
             <form action="<?= url("/carrinho/add")?>" method="post">

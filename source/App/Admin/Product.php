@@ -3,7 +3,6 @@
 namespace Source\App\Admin;
 
 use Source\Models\Category;
-use Source\Models\Post;
 use Source\Models\User;
 use Source\Support\Pager;
 use Source\Support\Thumb;
@@ -80,6 +79,14 @@ class Product extends Admin
         //MCE Upload
         if (!empty($data["upload"]) && !empty($_FILES["image"])) {
             $files = $_FILES["image"];
+            list($largura_original, $altura_original) = getimagesize($files);
+            if($largura_original != CONF_IMAGE_MINIMU_SIZE["width"] ||
+                $altura_original != CONF_IMAGE_MINIMU_SIZE["height"]){
+                $json["message"] = $this->message->error("A imagem inserida não tem o tamanho de ".CONF_IMAGE_MINIMU_SIZE["width"]
+                ." X ".CONF_IMAGE_MINIMU_SIZE["height"])->render();
+                echo json_encode($json);
+                return;
+            }
             $upload = new Upload();
             $image = $upload->image($files, "product-" . time());
 
@@ -265,7 +272,8 @@ class Product extends Admin
         echo $this->view->render("widgets/products/categories", [
             "app" => "products/categories",
             "head" => $head,
-            "categories" => $categories->order("title")->limit($pager->limit())->offset($pager->offset())->fetch(true),
+            "categories" => $categories->order("title")
+                ->limit($pager->limit())->offset($pager->offset())->fetch(true),
             "paginator" => $pager->render()
         ]);
     }
@@ -284,10 +292,20 @@ class Product extends Admin
             $categoryCreate->title = $data["title"];
             $categoryCreate->uri = str_slug($categoryCreate->title);
             $categoryCreate->description = $data["description"];
+            $categoryCreate->type = "product";
 
             //upload image
             if (!empty($_FILES["image"])) {
                 $files = $_FILES["image"];
+                list($largura_original, $altura_original) = getimagesize($files["tmp_name"]);
+                if($largura_original != CONF_IMAGE_MINIMU_SIZE["width"] ||
+                    $altura_original != CONF_IMAGE_MINIMU_SIZE["height"]){
+                    $json["message"] = $this->message->warning("A imagem inserida não tem o tamanho de ".CONF_IMAGE_MINIMU_SIZE["width"]
+                        ." X ".CONF_IMAGE_MINIMU_SIZE["height"])->render();
+                    echo json_encode($json);
+                    return;
+                }
+
                 $upload = new Upload();
                 $image = $upload->image($files, $categoryCreate->title);
 
@@ -297,7 +315,7 @@ class Product extends Admin
                     return;
                 }
 
-                $categoryCreate->image = $image;
+                $categoryCreate->cover = $image;
             }
 
             if (!$categoryCreate->save()) {
@@ -307,7 +325,7 @@ class Product extends Admin
             }
 
             $this->message->success("Categoria criada com sucesso...")->flash();
-            $json["redirect"] = url("/admin/blog/category/{$categoryCreate->id}");
+            $json["redirect"] = url("/admin/products/category/{$categoryCreate->id}");
 
             echo json_encode($json);
             return;
@@ -384,7 +402,7 @@ class Product extends Admin
             $categoryDelete->destroy();
 
             $this->message->success("A categoria foi excluída com sucesso...")->flash();
-            echo json_encode(["reload" => true]);
+            echo json_encode(["redirect" => url("/admin/products/categories")]);
 
             return;
         }
@@ -407,6 +425,130 @@ class Product extends Admin
             "app" => "products/categories",
             "head" => $head,
             "category" => $categoryEdit
+        ]);
+    }
+
+    public function subcategory(?array $data)
+    {
+        //create
+        if (!empty($data["action"]) && $data["action"] == "create") {
+            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+
+            $subcategoryCreate = new Category\Subcategory();
+            $subcategoryCreate->category_id = $data["category_id"];
+            $subcategoryCreate->title = $data["title"];
+            $subcategoryCreate->uri = str_slug($subcategoryCreate->title);
+            $subcategoryCreate->description = $data["description"];
+
+            //upload image
+            if (!empty($_FILES["image"])) {
+                $files = $_FILES["image"];
+                list($largura_original, $altura_original) = getimagesize($files["tmp_name"]);
+                if($largura_original != CONF_IMAGE_MINIMU_SIZE["width"] ||
+                    $altura_original != CONF_IMAGE_MINIMU_SIZE["height"]){
+                    $json["message"] = $this->message->warning("A imagem inserida não tem o tamanho de ".CONF_IMAGE_MINIMU_SIZE["width"]
+                        ." X ".CONF_IMAGE_MINIMU_SIZE["height"])->render();
+                    echo json_encode($json);
+                    return;
+                }
+
+                $upload = new Upload();
+                $image = $upload->image($files, $subcategoryCreate->title);
+
+                if (!$image) {
+                    $json["message"] = $upload->message()->render();
+                    echo json_encode($json);
+                    return;
+                }
+
+                $subcategoryCreate->cover = $image;
+            }
+
+            if (!$subcategoryCreate->save()) {
+                $json["message"] = $subcategoryCreate->message()->render();
+                echo json_encode($json);
+                return;
+            }
+
+            $this->message->success("Subcategoria cadastrado com sucesso...")->flash();
+            echo json_encode(["redirect" => url("/admin/products/subcategory/{$subcategoryCreate->category_id}/{$subcategoryCreate->id}")]);
+
+            return;
+        }
+
+        //update
+        if (!empty($data["action"]) && $data["action"] == "update") {
+            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+            $subcategoryEdit = (new Category\Subcategory())->findById($data["subcategory_id"]);
+
+            if (!$subcategoryEdit) {
+                $this->message->error("Você tentou editar uma pergunta que não existe ou foi removida")->flash();
+                echo json_encode(["redirect" => url("/admin/faq/home")]);
+                return;
+            }
+
+            $subcategoryEdit->category_id = $data["category_id"];
+            $subcategoryEdit->question = $data["question"];
+            $subcategoryEdit->response = $data["response"];
+            $subcategoryEdit->order_by = $data["order_by"];
+
+            if (!$subcategoryEdit->save()) {
+                $json["message"] = $subcategoryEdit->message()->render();
+                echo json_encode($json);
+                return;
+            }
+
+            $json["message"] = $this->message->success("Pergunta atualizada com sucesso...")->render();
+            echo json_encode($json);
+            return;
+        }
+
+        //delete
+        if (!empty($data["action"]) && $data["action"] == "delete") {
+            $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
+            $subcategoryDelete = (new Category\Subcategory())->findById($data["subcategory_id"]);
+
+            if (!$subcategoryDelete) {
+                $this->message->error("Você tentou remover uma pergunta que não existe")->flash();
+                echo json_encode(["redirect" => url("/admin/faq/home")]);
+                return;
+            }
+
+            $subcategoryDelete->destroy();
+            $this->message->success("Subcategoria excluída com sucesso...")->flash();
+
+            echo json_encode(["redirect" => url("/admin/products/categories")]);
+            return;
+        }
+
+        $category = (new Category())->findById($data["category_id"]);
+        $subcategory = null;
+
+        if (!$category) {
+            $this->message->warning("Você tentou gerenciar subcategorias de uma categoria que não existe")->flash();
+            redirect("/admin/products/categories");
+        }
+
+        if (!empty($data["subcategory_id"])) {
+            $subcategoryId = filter_var($data["subcategory_id"], FILTER_VALIDATE_INT);
+            $subcategory = (new Category\Subcategory())->findById($subcategoryId);
+        }
+
+
+        $head = $this->seo->render(
+            CONF_SITE_NAME . " | FAQ: Perguntas em {$category->category}",
+            CONF_SITE_DESC,
+            url("/admin"),
+            url("/admin/assets/images/image.jpg"),
+            false
+        );
+
+        echo $this->view->render("widgets/products/subcategories", [
+            "app" => "products/subcategories",
+            "head" => $head,
+            "category" => $category,
+            "subcategory" => $subcategory,
+            "noImage" => (!empty($subcategory) ? false: true)
         ]);
     }
 }

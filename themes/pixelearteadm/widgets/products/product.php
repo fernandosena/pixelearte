@@ -157,7 +157,7 @@
                                 };
                                 ?>
                                 <option <?= $select($category->id); ?>
-                                        value="<?= $category->id; ?>"><?= $category->title; ?></option>
+                                    value="<?= $category->id; ?>"><?= $category->title; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </label>

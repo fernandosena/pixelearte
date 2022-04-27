@@ -45,7 +45,7 @@
             <?php
                     endforeach;
                 else:
-                    echo message()->success("Nenhum produto ainda cadastrado, estamos trabalhando nisso, aguarde...");
+//                    echo message()->success("Nenhum produto ainda cadastrado, estamos trabalhando nisso, aguarde...");
                 endif;
             ?>
         </div>

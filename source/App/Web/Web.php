@@ -6,7 +6,7 @@ use Source\Core\Controller;
 use Source\Models\Auth;
 use Source\Models\Banner;
 use Source\Models\Category;
-use Source\Models\Faq\Question;
+use Source\Models\Faq\Subcategory;
 use Source\Models\Post;
 use Source\Models\Report\Access;
 use Source\Models\Report\Online;
@@ -54,6 +54,10 @@ class Web extends Controller
             "products" => (new \Source\Models\Product())
                 ->find()
                 ->limit(12)
+                ->fetch(true),
+            "menu" => (new Category())
+                ->find()
+                ->limit(5)
                 ->fetch(true)
         ]);
     }
@@ -73,7 +77,7 @@ class Web extends Controller
         echo $this->view->render("about", [
             "head" => $head,
             "video" => "lDZGl9Wdc7Y",
-            "faq" => (new Question())
+            "faq" => (new Subcategory())
                 ->find("channel_id = :id", "id=1", "question, response")
                 ->order("order_by")
                 ->fetch(true)

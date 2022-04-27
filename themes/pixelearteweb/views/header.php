@@ -72,51 +72,29 @@
         </div>
     </div>
 </header>
+<?php if(!empty($menu)): ?>
 <div class="menu">
     <div class="centro">
         <nav>
             <ul>
-                <li>Todos Departamentos <i class="fa-solid fa-chevron-down"></i>
-                    <ul>
-                        <div>
-                            <a href=""><li>Todos Departamentos</li></a>
-                            <a href=""><li>Todos Departamentos</li></a>
-                            <a href=""><li>Todos Departamentos</li></a>
-                            <a href=""><li>Todos Departamentos</li></a>
-                        </div>
-                    </ul>
-                </li>
-                <li>Todos Departamentos <i class="fa-solid fa-chevron-down"></i>
-                    <ul>
-                        <div>
-                            <a href=""><li>Todos Departamentos</li></a>
-                            <a href=""><li>Todos Departamentos</li></a>
-                            <a href=""><li>Todos Departamentos</li></a>
-                            <a href=""><li>Todos Departamentos</li></a>
-                        </div>
-                    </ul>
-                </li>
-                <li>Todos Departamentos <i class="fa-solid fa-chevron-down"></i>
-                    <ul>
-                        <div>
-                            <a href=""><li>Todos Departamentos</li></a>
-                            <a href=""><li>Todos Departamentos</li></a>
-                            <a href=""><li>Todos Departamentos</li></a>
-                            <a href=""><li>Todos Departamentos</li></a>
-                        </div>
-                    </ul>
-                </li>
-                <li>Todos Departamentos <i class="fa-solid fa-chevron-down"></i>
-                    <ul>
-                        <div>
-                            <a href=""><li>Todos Departamentos</li></a>
-                            <a href=""><li>Todos Departamentos</li></a>
-                            <a href=""><li>Todos Departamentos</li></a>
-                            <a href=""><li>Todos Departamentos</li></a>
-                        </div>
-                    </ul>
-                </li>
+                <?php
+                    foreach ($menu as $li):
+                    $submenu = $li->subcategory()->fetch(true);
+                ?>
+                        <li><a href="<?= (empty($submenu)) ? url("/produtos/categoria/{$li->uri}"): "#" ?>"> <?= $li->title ?></a> <?= (!empty($submenu)) ? '<i class="fa-solid fa-chevron-down">': null ?></i>
+                        <?php if(!empty($submenu)): ?>
+                            <ul>
+                                <div>
+                                    <?php foreach ($submenu as $ulLi): ?>
+                                        <a href="<?= url("/produtos/categoria/{$li->uri}/{$ulLi->uri}")?>"><li><?= $ulLi->title?></li></a>
+                                    <?php endforeach;?>
+                                </div>
+                            </ul>
+                        <?php endif;?>
+                    </li>
+                <?php endforeach;?>
             </ul>
         </nav>
     </div>
 </div>
+<?php endif;?>

@@ -35,15 +35,19 @@
     <div class="centro">
         <div class="slider categorias">
             <?php
-                for($i=1;$i <= 10; $i++):
+                if(!empty($categories)):
+                    foreach($categories as $categorie):
             ?>
                 <div>
-                    <a href="<?= url("/produtos/categoria/cartoes-de-visita") ?>">
-                        <img src="<?= url("/storage/images/2022/04/produto01.jpg")?>" alt="" title="">
-                        <h3>Categoria</h3>
+                    <a href="<?= url("/produtos/categoria/{$categorie->uri}") ?>">
+                        <img src="<?= image($categorie->cover, 350)?>" alt="<?= $categorie->titule ?>" title="<?= $categorie->titule ?>">
+                        <h3><?= ucfirst($categorie->title) ?></h3>
                     </a>
                 </div>
-            <?php endfor; ?>
+            <?php
+                    endforeach;
+                endif;
+            ?>
         </div>
     </div>
 </div>

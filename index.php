@@ -145,6 +145,10 @@ $route->get("/products/category", "Product:category");
 $route->post("/products/category", "Product:category");
 $route->get("/products/category/{category_id}", "Product:category");
 $route->post("/products/category/{category_id}", "Product:category");
+$route->get("/products/subcategory/{category_id}", "Product:subcategory");
+$route->post("/products/subcategory/{category_id}", "Product:subcategory");
+$route->get("/products/subcategory/{category_id}/{subcategory_id}", "Product:subcategory");
+$route->post("/products/subcategory/{category_id}/{subcategory_id}", "Product:subcategory");
 
 //blog
 $route->get("/blog/home", "Blog:home");

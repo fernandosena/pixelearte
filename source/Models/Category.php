@@ -3,6 +3,7 @@
 namespace Source\Models;
 
 use Source\Core\Model;
+use Source\Models\Category\Subcategory;
 
 /**
  * Class Category
@@ -15,7 +16,7 @@ class Category extends Model
      */
     public function __construct()
     {
-        parent::__construct("categories", ["id"], ["title", "description"]);
+        parent::__construct("categories", ["id"], ["title", "uri", "description", "cover", "type"]);
     }
 
     /**
@@ -41,6 +42,17 @@ class Category extends Model
     {
         return (new Post())->find("category = :id", "id={$this->id}");
     }
+
+    public function products(): Product
+    {
+        return (new Product())->find("category = :id", "id={$this->id}");
+    }
+
+    public function subcategory(): Subcategory
+    {
+        return (new Subcategory())->find("category_id = :id", "id={$this->id}");
+    }
+
 
     /**
      * @return bool

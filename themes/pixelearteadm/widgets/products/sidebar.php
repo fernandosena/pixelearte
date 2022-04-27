@@ -15,12 +15,20 @@
         echo $nav("plus-circle", "products/product", "Novo Produto");
         ?>
 
-        <?php if (!empty($post->cover)): ?>
-            <img class="radius" style="width: 100%; margin-top: 30px" src="<?= image($post->cover, 680); ?>"/>
-        <?php endif; ?>
+        <?php if (empty($noImage)): ?>
+            <?php if (!empty($post->cover)): ?>
+                <img class="radius" style="width: 100%; margin-top: 30px" src="<?= image($post->cover, 680); ?>"/>
+            <?php endif; ?>
 
-        <?php if (!empty($category->cover)): ?>
-            <img class="radius" style="width: 100%; margin-top: 30px" src="<?= image($category->cover, 680); ?>"/>
+            <?php if (empty($subcategory->cover)): ?>
+                <?php if (!empty($category->cover)): ?>
+                    <img class="radius" style="width: 100%; margin-top: 30px" src="<?= image($category->cover, 680); ?>"/>
+                <?php endif; ?>
+            <?php endif; ?>
+
+            <?php if (!empty($subcategory->cover)): ?>
+                <img class="radius" style="width: 100%; margin-top: 30px" src="<?= image($category->cover, 680); ?>"/>
+            <?php endif; ?>
         <?php endif; ?>
     </nav>
 </div>

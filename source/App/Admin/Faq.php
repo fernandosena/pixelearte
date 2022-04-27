@@ -41,7 +41,10 @@ class Faq extends Admin
         echo $this->view->render("widgets/faqs/home", [
             "app" => "faq/home",
             "head" => $head,
-            "channels" => $channels->order("channel")->limit($pager->limit())->offset($pager->offset())->fetch(true),
+            "channels" => $channels->order("channel")
+                ->limit($pager->limit())
+                ->offset($pager->offset())
+                ->fetch(true),
             "paginator" => $pager->render()
         ]);
     }

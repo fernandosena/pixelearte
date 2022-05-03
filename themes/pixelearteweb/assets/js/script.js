@@ -60,4 +60,25 @@ $(function () {
             }
         });
     });
+
+    var select = {"calc": true};
+    $(".select").change(function (e) {
+        id = $(".id").val();
+        select[$(this).attr("name")] = $(this).val();
+        $.ajax({
+            url: $(".form").attr("action"),
+            type: "POST",
+            data: select,
+            dataType: "json",
+            success: function (response) {
+                if (response.price) {
+                    $(".subtotal"+id).text(response.price);
+                    $(".variation").val(response.idVariation);
+                }
+            },
+            error: function () {
+                console.log(response)
+            }
+        });
+    })
 });

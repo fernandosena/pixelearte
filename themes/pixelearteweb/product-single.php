@@ -28,43 +28,50 @@
                     <?php endif; ?>
                 </div>
             </div>
-            <form action="<?= url("/carrinho/add")?>" method="post">
+            <form class="form" action="<?= url("/carrinho/add")?>" method="post">
                 <input type="hidden" name="type" value="add">
-                <input type="hidden" name="id" value="<?= $product->id ?>">
+                <input type="hidden" name="id" class="id" value="<?= $product->id ?>">
+                <input type="hidden" name="variation" class="variation">
                 <div class="conteudo">
-                    <div class="detalhes">
-                        <div>
-                            <label>REF</label>
-                            <p>#REF-<?= $product->id ?></p>
-                        </div>
-                        <div>
-                            <label>Detalhes:</label>
-                            <p><?= $product->details ?></p>
-                        </div>
-                        <div>
-                            <p></p>
-                            <p>Por apenas</p>
-                        </div>
-                        <div>
-                            <p></p>
-                            <p><?= price_symbol($product->price) ?></p>
-                        </div>
-                    </div>
                     <div class="quantidade">
                         <div>
-                            <label>Quantidade:</label>
-                            <div class="qtd">
-                                <i class="fa-solid fa-plus"
-                                   data-id="<?= $product->id ?>"
-                                   data-value="<?= $product->id ?>"
-                                   data-url="<?= url("/carrinho/calc"); ?>"
-                                   data-type="add"
-                                ></i>
-                                <input type="text" readonly name="qtd" value="1" min="1" max="999" class="value<?= $product->id ?>">
-                                <i class="fa-solid fa-minus"
-                                   data-id="<?= $product->id ?>"
-                                   data-url="<?= url("/carrinho/calc"); ?>"
-                                   data-type="del"></i>
+                            <span>Material</span>
+                            <select name="material_id" class="select" required>
+                                <option value="">Selecione um material</option>
+                                <?php
+                                    foreach ($product->variation()["material"] as $materialKey => $materialValue):
+                                ?>
+                                        <option value="<?= $materialKey ?>"><?= $materialValue ?></option>
+                                <?php
+                                    endforeach;
+                                ?>
+                            </select>
+                        </div>
+                        <div>
+                            <span>Impressão</span>
+                            <select name="print_id" class="select" required>
+                                <option value="">Selecione uma impressão</option>
+                                <?php
+                                    foreach ($product->variation()["print"] as $printKey => $printValue):
+                                ?>
+                                        <option value="<?= $printKey ?>"><?= $printValue ?></option>
+                                <?php
+                                    endforeach;
+                                ?>
+                            </select>
+                        </div>
+                        <div>
+                            <span>Quantidade</span>
+                            <div class="radio">
+                                <?php
+                                    foreach ($product->variation()["quantity"] as $quantityKey => $quantityValue):
+                                ?>
+                                    <label>
+                                        <input required type="radio" name="quantity_id" class="select" value="<?= $quantityKey ?>"><?= $quantityValue ?> Uni.</input>
+                                    </label>
+                                <?php
+                                    endforeach;
+                                ?>
                             </div>
                         </div>
                     </div>

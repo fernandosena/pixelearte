@@ -38,9 +38,8 @@
                         "title" => $product->title,
                         "uri" => $product->uri,
                         "details" => $product->details,
-                        "qtd" => $product->quantity,
                         "old_price" => $product->old_price,
-                        "price" => $product->price,
+                        "price" => price_symbol($product->variationPrice()->min)." - ".price_symbol($product->variationPrice()->max),
                     ]); ?>
             <?php
                     endforeach;

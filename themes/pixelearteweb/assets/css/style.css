@@ -394,16 +394,13 @@ body {
             margin-bottom: -5px;
             text-decoration: line-through;
             color: #ff6162; }
-          #produtos .centro .produtos div.item .dados .price {
-            display: flex;
-            gap: 10px 15px;
-            align-items: flex-start; }
-            #produtos .centro .produtos div.item .dados .price p {
-              color: #00C5CD;
-              font-size: 28px;
-              font-weight: bolder; }
-            #produtos .centro .produtos div.item .dados .price .quantidade label {
-              font-size: 12px; }
+          #produtos .centro .produtos div.item .dados .price p {
+            color: #00C5CD;
+            font-size: 20px;
+            text-align: center;
+            font-weight: bolder; }
+          #produtos .centro .produtos div.item .dados .price .quantidade label {
+            font-size: 12px; }
           #produtos .centro .produtos div.item .dados .btn-grupo {
             margin-top: 15px; }
             #produtos .centro .produtos div.item .dados .btn-grupo button {
@@ -465,31 +462,29 @@ body {
       width: 65%;
       float: left;
       margin-left: 10px; }
-      #produto-singular .box-conteudo .centro .conteudo .detalhes {
-        padding: 10px 20px; }
-        #produto-singular .box-conteudo .centro .conteudo .detalhes div {
-          display: flex;
-          justify-content: space-between;
-          align-items: center; }
-          #produto-singular .box-conteudo .centro .conteudo .detalhes div label {
-            font-weight: bolder; }
-          #produto-singular .box-conteudo .centro .conteudo .detalhes div p {
-            margin: 15px 0;
-            width: 50%; }
+      #produto-singular .box-conteudo .centro .conteudo div div {
+        margin: 10px 0; }
+        #produto-singular .box-conteudo .centro .conteudo div div span {
+          font-weight: bolder;
+          display: block;
+          margin-bottom: 10px; }
+        #produto-singular .box-conteudo .centro .conteudo div div select {
+          width: 100%;
+          padding: 10px; }
       #produto-singular .box-conteudo .centro .conteudo .quantidade {
         padding: 10px 20px;
         border-top: 1px solid #ccc;
         border-bottom: 1px solid #ccc;
         margin: 0; }
-        #produto-singular .box-conteudo .centro .conteudo .quantidade div {
-          margin: 10px 0;
+        #produto-singular .box-conteudo .centro .conteudo .quantidade .radio {
           display: flex;
-          align-items: center; }
-          #produto-singular .box-conteudo .centro .conteudo .quantidade div label {
-            font-weight: bolder;
-            width: 50%; }
-          #produto-singular .box-conteudo .centro .conteudo .quantidade div p {
-            width: 50%; }
+          flex-direction: row;
+          justify-content: space-between; }
+          #produto-singular .box-conteudo .centro .conteudo .quantidade .radio label {
+            padding: 10px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 7px; }
       #produto-singular .box-conteudo .centro .conteudo .observacoes {
         padding: 10px 20px;
         border-top: 1px solid #ccc;

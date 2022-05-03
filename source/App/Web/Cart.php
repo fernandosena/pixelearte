@@ -3,6 +3,7 @@
 namespace Source\App\Web;
 
 use Source\Core\Controller;
+use Source\Models\Product\ProductVariation;
 use Source\Models\Report\Access;
 use Source\Models\Report\Online;
 
@@ -23,6 +24,9 @@ class Cart extends Controller
         (new Access())->report();
         (new Online())->report();
         $this->cart = (new \Source\Core\Cart());
+//        echo "<pre>";
+//        var_dump($_SESSION);
+//        echo "</pre>";
     }
 
 
@@ -114,6 +118,18 @@ class Cart extends Controller
 
     public function add(?array $data): void
     {
+        if(!empty($data["calc"])){
+            $material = (!empty($data["material_id"]) ? " = '{$data["material_id"]}'" : "IS NULL");
+            $print = (!empty($data["print_id"]) ? " = '{$data["print_id"]}'" : "IS NULL");
+            $quantity = (!empty($data["quantity_id"]) ? " = '{$data["quantity_id"]}'" : "IS NULL");
+
+            $product = (new ProductVariation())
+                ->find("material_id {$material} AND print_id {$print} AND quantity_id {$quantity}")
+                ->fetch();
+            echo json_encode(["idVariation"=> ($product->id ?? null),"price"=>(!empty($product->price) ? price_symbol($product->price): price_symbol(0))]);
+            return;
+        }
+
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
         $this->cart->add($data);
         if(!isset($data["observation"])){
@@ -132,15 +148,15 @@ class Cart extends Controller
     public function calc(?array $data): void
     {
         $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
-        $product = (new \Source\Models\Product())->findById($data["id"]);
-        $resultado = $product->price * $data["qtd"];
+        $variation = (new ProductVariation())->findById($data["id"]);
+        $resultado = $variation->price * $data["qtd"];
         if($data["type"] == "add"){
             if(!empty($data["save"]) && $data["save"] == true){
                 $_SESSION["compras"]["carrinho"][$data["id"]]["qtd"] = $data["qtd"];
                 $_SESSION["compras"]["carrinho"][$data["id"]]["subtotal"] = $resultado;
                 $this->cart->atualizar();
             }
-            $_SESSION["calculo"] = $_SESSION["calculo"] + $product->price;
+            $_SESSION["calculo"] = $_SESSION["calculo"] + $variation->price;
         }
 
         if($data["type"] == "del"){
@@ -149,7 +165,7 @@ class Cart extends Controller
                 $_SESSION["compras"]["carrinho"][$data["id"]]["subtotal"] = $resultado;
                 $this->cart->atualizar();
             }
-            $_SESSION["calculo"] -= $product->price;
+            $_SESSION["calculo"] -= $variation->price;
         }
         echo json_encode(["subtotal"=>price_symbol($resultado), "total"=>price_symbol($_SESSION["calculo"])]);
     }

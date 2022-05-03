@@ -20,35 +20,36 @@
                     <tbody>
                 <?php
                         foreach ($products as $item):
+                            $variation = (new \Source\Models\Product\ProductVariation())->findById($item["variation"]);
                 ?>
                             <tr>
                                 <td>
                                     <a href="<?= url("produto/{$item["uri"]}") ?>">
                                         <img src="<?= image($item["image"], 150)?>" alt="" title="">
-                                        <p><?= $item["title"] ?></p>
+                                        <p><?= "{$variation->quantity()[0]->value} {$item["title"]}" ?></p>
                                     </a>
                                 </td>
                                 <td>
                                     <div class="qtd">
                                         <i class="fa-solid fa-plus"
-                                           data-id="<?= $item["id"] ?>"
-                                           data-value="<?= $item["id"] ?>"
+                                           data-id="<?= $variation->id ?>"
+                                           data-value="<?= $variation->id ?>"
                                            data-url="<?= url("/carrinho/calc"); ?>"
                                            data-type="add"
                                            data-save="true"></i>
-                                        <input type="text" readonly name="qtd" value="<?= $item["qtd"] ?>" min="1" max="999" class="value<?= $item["id"] ?>">
+                                        <input type="text" readonly name="qtd" value="<?= $item["qtd"] ?>" min="1" max="999" class="value<?= $variation->id ?>">
                                         <i class="fa-solid fa-minus"
-                                           data-id="<?= $item["id"] ?>"
+                                           data-id="<?= $variation->id ?>"
                                            data-url="<?= url("/carrinho/calc"); ?>"
                                            data-type="del"
                                            data-save="true"></i>
                                     </div>
                                 </td>
                                 <td><?= price_symbol($item["value"]) ?></td>
-                                <td><label class="subtotal<?= $item["id"] ?>"><?= price_symbol($item["subtotal"]) ?></label></td>
+                                <td><label class="subtotal<?= $variation->id ?>"><?= price_symbol($item["subtotal"]) ?></label></td>
                                 <td>
                                     <div>
-                                        <a href="<?= url("/carrinho/del/{$item["id"]}/all")?>"><i class="fa-solid fa-trash-can"></i> Excluir</a>
+                                        <a href="<?= url("/carrinho/del/{$variation->id}/all")?>"><i class="fa-solid fa-trash-can"></i> Excluir</a>
                                     </div>
                                 </td>
                             </tr>

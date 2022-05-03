@@ -548,12 +548,10 @@ body {
             }
           }
           .price{
-            display: flex;
-            gap: 10px 15px;
-            align-items: flex-start;
             p{
               color: $cor-secundaria;
-              font-size: 28px;
+              font-size: 20px;
+              text-align: center;
               font-weight: bolder;
             }
             .quantidade{
@@ -659,18 +657,19 @@ body {
         width: 65%;
         float: left;
         margin-left: 10px;
-        .detalhes{
-          padding: 10px 20px;
+        div{
           div{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            label{
+            margin: 10px 0;
+            span{
               font-weight: bolder;
+              display: block;
+              margin-bottom: 10px;
+            }
+            select{
+              width: 100%;
+              padding: 10px;
             }
             p{
-              margin: 15px 0;
-              width: 50%;
             }
           }
         }
@@ -679,16 +678,15 @@ body {
           border-top: 1px solid #ccc;
           border-bottom: 1px solid #ccc;
           margin: 0;
-          div{
-            margin: 10px 0;
+          .radio{
             display: flex;
-            align-items: center;
+            flex-direction: row;
+            justify-content: space-between;
             label{
-              font-weight: bolder;
-              width: 50%;
-            }
-            p{
-              width: 50%;
+              padding: 10px;
+              cursor: pointer;
+              border: 1px solid #ccc;
+              border-radius: 7px;
             }
           }
         }

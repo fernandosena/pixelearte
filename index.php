@@ -68,7 +68,7 @@ $route->get("/{uri}", "Product:single");
 
 $route->group(null);
 $route->get("/carrinho", "Cart:home");
-$route->get("/carrinho/add/{id}", "Cart:add");
+//$route->get("/carrinho/add/{id}", "Cart:add");
 $route->post("/carrinho/add", "Cart:add");
 $route->post("/carrinho/calc", "Cart:calc");
 $route->get("/carrinho/del/{id}/{all}", "Cart:del");
@@ -145,10 +145,14 @@ $route->get("/products/category", "Product:category");
 $route->post("/products/category", "Product:category");
 $route->get("/products/category/{category_id}", "Product:category");
 $route->post("/products/category/{category_id}", "Product:category");
+
 $route->get("/products/subcategory/{category_id}", "Product:subcategory");
 $route->post("/products/subcategory/{category_id}", "Product:subcategory");
 $route->get("/products/subcategory/{category_id}/{subcategory_id}", "Product:subcategory");
 $route->post("/products/subcategory/{category_id}/{subcategory_id}", "Product:subcategory");
+
+$route->get("/products/variation/{product_id}", "Product:variation");
+$route->post("/products/variation", "Product:variation");
 
 //blog
 $route->get("/blog/home", "Blog:home");

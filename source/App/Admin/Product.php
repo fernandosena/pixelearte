@@ -3,6 +3,10 @@
 namespace Source\App\Admin;
 
 use Source\Models\Category;
+use Source\Models\Product\ProductMaterial;
+use Source\Models\Product\ProductPrint;
+use Source\Models\Product\ProductQuantity;
+use Source\Models\Product\ProductVariation;
 use Source\Models\User;
 use Source\Support\Pager;
 use Source\Support\Thumb;
@@ -107,13 +111,13 @@ class Product extends Admin
             $data = filter_var_array($data, FILTER_SANITIZE_STRIPPED);
 
             $productCreate = new \Source\Models\Product();
-            $productCreate->category = $data["category"];
+            $productCreate->category_id = $data["category"];
             $productCreate->title = $data["title"];
             $productCreate->uri = str_slug($productCreate->title);
             $productCreate->details = $data["details"];
             $productCreate->description = str_replace(["{title}"], [$productCreate->title], $content);
             $productCreate->size = $data["size"];
-            $productCreate->old_price = $data["old_price"];
+//            $productCreate->site_type = $data["site_type"];
             $productCreate->price = $data["price"];
             $productCreate->quantity = $data["quantity"];
 
@@ -131,8 +135,9 @@ class Product extends Admin
 
                 $productCreate->image = $image;
             }
-
             if (!$productCreate->save()) {
+                var_dump($productCreate);
+                return;
                 $json["message"] = $productCreate->message()->render();
                 echo json_encode($json);
                 return;
@@ -248,7 +253,9 @@ class Product extends Admin
             "head" => $head,
             "product" => $productEdit,
             "categories" => (new Category())->find("type = :type", "type=product")->order("title")->fetch(true),
-            "authors" => (new User())->find("level >= :level", "level=5")->fetch(true)
+            "authors" => (new User())->find("level >= :level", "level=5")->fetch(true),
+            "impressions" => (new ProductPrint())->find()->fetch(true),
+            "materials" => (new ProductMaterial())->find()->fetch(true)
         ]);
     }
 
@@ -425,6 +432,54 @@ class Product extends Admin
             "app" => "products/categories",
             "head" => $head,
             "category" => $categoryEdit
+        ]);
+    }
+
+    public function variation(?array $data): void
+    {
+        if(!empty($data["action"])){
+            $verifica = (new ProductVariation())->find(
+                "product_id = :p AND 
+                        print_id = :pr AND
+                        material_id = :m AND 
+                        quantity_id = :q",
+                "p={$data["id"]}&pr={$data["print"]}&m={$data["material"]}&q={$data["quantity"]}"
+            )->fetch();
+            if($verifica){
+                $json["message"] = $this->message->warning("Essa variação de produto já existe cadastrado")->render();
+                echo json_encode($json);
+                return;
+            }
+
+
+            $variation = new ProductVariation();
+            $variation->product_id = $data["id"];
+            $variation->print_id = $data["print"];
+            $variation->material_id = $data["material"];
+            $variation->quantity_id = $data["quantity"];
+            $variation->price = str_replace(",", ".",str_replace(".","",$data["price"]));
+
+            $variation->save();
+            $json["message"] = $this->message->success("Essa variação foi cadastrada com sucesso")->render();
+            echo json_encode($json);
+            return;
+        }
+
+        $head = $this->seo->render(
+            CONF_SITE_NAME . " | Variação",
+            CONF_SITE_DESC,
+            url("/admin"),
+            url("/admin/assets/images/image.jpg"),
+            false
+        );
+
+        echo $this->view->render("widgets/products/variation", [
+            "app" => "products/variation",
+            "head" => $head,
+            "product" => (new \Source\Models\Product())->findById($data["product_id"]),
+            "impressions" => (new ProductPrint())->find()->fetch(true),
+            "quantities" => (new ProductQuantity())->find()->fetch(true),
+            "materials" => (new ProductMaterial())->find()->fetch(true)
         ]);
     }
 

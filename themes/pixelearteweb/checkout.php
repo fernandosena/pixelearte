@@ -76,8 +76,11 @@
                         </thead>
                         <tbody>
                             <?php foreach ($_SESSION["compras"]["carrinho"] as $compras): ?>
+                                <?php
+                                    $variation = (new \Source\Models\Product\ProductVariation())->findById($compras["variation"]);
+                                ?>
                                 <tr>
-                                    <td><?= $compras["title"] ?></td>
+                                    <td><?= "{$variation->quantity()[0]->value} - {$compras["title"]}" ?></td>
                                     <td><?= $compras["qtd"] ?></td>
                                     <td><?= price_symbol($compras["value"]) ?></td>
                                     <td><?= price_symbol($compras["subtotal"]) ?></td>

@@ -24,7 +24,6 @@
             <form class="app_form" action="<?= url("/admin/products/product"); ?>" method="post">
                 <!-- ACTION SPOOFING-->
                 <input type="hidden" name="action" value="create"/>
-
                 <label class="label">
                     <span class="legend">*Título:</span>
                     <input type="text" name="title" placeholder="O titulo do produto"
@@ -33,7 +32,7 @@
 
                 <label class="label">
                     <span class="legend">* Capa: (350x350px)</span>
-                    <input type="file" name="image" placeholder="Uma imagem principal" required/>
+                    <input type="file" name="image" placeholder="Uma imagem principal"/>
                 </label>
                 <label class="label">
                     <span class="legend">*Resumo:</span>
@@ -45,9 +44,36 @@
                     <span class="legend">*Descrição:</span>
                     <textarea class="mce" name="description"></textarea>
                 </label>
+
                 <div class="label_g2">
                     <label class="label">
-                        <span class="legend">*Preço:</span>
+                        <span class="legend">Impressão:</span>
+                        <select name="print">
+                            <option value="" selected>Selecione uma impressão</option>
+                            <?php foreach ($impressions as $impression): ?>
+                                <option value="<?= $impression->id; ?>"><?= $impression->title; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
+                    <label class="label">
+                        <span class="legend">Material:</span>
+                        <select name="material">
+                            <option value="" selected>Selecione um material</option>
+                            <?php foreach ($materials as $material): ?>
+                                <option value="<?= $material->id; ?>"><?= $material->title; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
+                </div>
+                <div class="label_g2">
+                    <label class="label">
+                        <span class="legend">Quantidade:</span>
+                        <input type="text" name="quantity" placeholder="Quantidade de impressão"/>
+                    </label>
+                </div>
+                <div class="label_g2">
+                    <label class="label">
+                        <span class="legend">Preço:</span>
                         <input type="text" name="price" placeholder="Preço atual do produto"/>
                     </label>
 
@@ -58,13 +84,16 @@
                 </div>
                 <div class="label_g2">
                     <label class="label">
-                        <span class="legend">*Tamanho:</span>
-                        <input type="text" name="size" placeholder="Tamnho da impressão"/>
+                        <span class="legend">Tamanho:</span>
+                        <input type="text" name="size" placeholder="Tamanho da impressão"/>
                     </label>
 
                     <label class="label">
-                        <span class="legend">*Quantidade:</span>
-                        <input type="text" name="quantity" placeholder="Quantidade de impressão"/>
+                        <span class="legend">Tipo:</span>
+                        <select name="site_type">
+                            <option value="cm" selected>Cm (Centimétros)</option>
+                            <option value="m">Metros (Metros)</option>
+                        </select>
                     </label>
                 </div>
 
@@ -78,14 +107,20 @@
                         </select>
                     </label>
                     <label class="label">
-                        <span class="legend">*Status:</span>
-                        <select name="status" required>
-                            <option value="post">Publicar</option>
-                            <option value="draft">Rascunho</option>
-                            <option value="trash">Lixo</option>
+                        <span class="legend">*Tipo:</span>
+                        <select name="type" required>
+                            <option value="father">Pai</option>
+                            <option value="child">Filho</option>
                         </select>
                     </label>
                 </div>
+                <label class="label">
+                    <span class="legend">*Visão:</span>
+                    <select name="type" required>
+                        <option value="visible" selected>Visível</option>
+                        <option value="hidden">Oculto</option>
+                    </select>
+                </label>
                 <div class="al-right">
                     <button class="btn btn-green icon-check-square-o">Cadastrar</button>
                 </div>
@@ -94,8 +129,7 @@
     <?php else: ?>
         <header class="dash_content_app_header">
             <h2 class="icon-pencil-square-o">Editar Produto #<?= $product->id; ?></h2>
-            <a class="icon-link btn btn-green" href="<?= url("/produto/{$product->uri}"); ?>" target="_blank" title="">Ver no
-                site</a>
+            <a class="icon-plus btn btn-green" href="<?= url("/admin/products/variation/{$product->id}"); ?>">Adicionar variação do produto</a>
         </header>
 
         <div class="dash_content_app_box">

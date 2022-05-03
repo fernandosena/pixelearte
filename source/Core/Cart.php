@@ -17,20 +17,22 @@ class Cart
     {
         //Verifica produto
         $produto = (new Product())->findById($data["id"]);
+        $variation = (new Product\ProductVariation())->findById($data["variation"]);
         if($produto){
             $qtd = ($data["qtd"] ?? 1);
-            if($this->session->has("compras") && isset($_SESSION["compras"]["carrinho"][$produto->id])){
-                $_SESSION["compras"]["carrinho"][$produto->id]["qtd"] += $qtd;
-                $_SESSION["compras"]["carrinho"][$produto->id]["subtotal"] = $_SESSION["compras"]["carrinho"][$produto->id]["qtd"]*$_SESSION["compras"]["carrinho"][$produto->id]["value"];
-                $_SESSION["compras"]["carrinho"][$produto->id]["comment"] = ($data["observation"] ?? null || $_SESSION["compras"]["carrinho"][$produto->id]["comment"] ?? null);
+            if($this->session->has("compras") && isset($_SESSION["compras"]["carrinho"][$variation->id])){
+                $_SESSION["compras"]["carrinho"][$variation->id]["qtd"] += $qtd;
+                $_SESSION["compras"]["carrinho"][$variation->id]["subtotal"] = $_SESSION["compras"]["carrinho"][$variation->id]["qtd"]*$_SESSION["compras"]["carrinho"][$variation->id]["value"];
+                $_SESSION["compras"]["carrinho"][$variation->id]["comment"] = ($data["observation"] ?? null || $_SESSION["compras"]["carrinho"][$variation->id]["comment"] ?? null);
             }else{
-                $_SESSION["compras"]["carrinho"][$produto->id] = [
+                $_SESSION["compras"]["carrinho"][$variation->id] = [
                     "id" => $produto->id,
                     "image" => $produto->image,
                     "uri" => $produto->uri,
                     "title" => $produto->title,
-                    "value" => $produto->price,
-                    "subtotal" => $qtd*$produto->price,
+                    "value" => $variation->price,
+                    "variation" => $variation->id,
+                    "subtotal" => $qtd*$variation->price,
                     "qtd" => $qtd,
                     "comment" => ($data["observation"] ?? null),
                 ];

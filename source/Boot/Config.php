@@ -17,20 +17,20 @@ define("CONF_URL_TEST", "http://localhost/pixelearte");
  * SITE
  */
 define("CONF_SITE_NAME", "Pixel&Arte");
-define("CONF_SITE_TITLE", "Mais que uma gráfica");
+define("CONF_SITE_TITLE", "Somos Mais que uma Gráfica");
 define("CONF_SITE_DESC",
-    "O ".CONF_SITE_NAME." é um gerenciador de contas simples, poderoso e gratuito. O prazer de tomar um café e ter o controle total de suas contas.");
+    "A ".CONF_SITE_NAME." é mais que uma gráfica que veio te trazer agilidade e qualidade na confecção de seus produtos, tags, cartões, adesivos, flyers e outros.");
 define("CONF_SITE_LANG", "pt_BR");
 define("CONF_SITE_DOMAIN", "pixelearte.com.br");
 define("CONF_SITE_EMAIL", [
     "SAC"=>"sac@pixelearte.com.br"
 ]);
-define("CONF_SITE_ADDR_STREET", "SC 406 - Rod. Drº Antônio Luiz Moura Gonzaga");
-define("CONF_SITE_ADDR_NUMBER", "3339");
-define("CONF_SITE_ADDR_COMPLEMENT", "Bloco A, Sala 208");
-define("CONF_SITE_ADDR_CITY", "Florianópolis");
-define("CONF_SITE_ADDR_STATE", "SC");
-define("CONF_SITE_ADDR_ZIPCODE", "88048-301");
+define("CONF_SITE_ADDR_STREET", "Magalhães Lemos, São Paulo");
+define("CONF_SITE_ADDR_NUMBER", "203");
+define("CONF_SITE_ADDR_COMPLEMENT", null);
+define("CONF_SITE_ADDR_CITY", "São Paulo");
+define("CONF_SITE_ADDR_STATE", "SP");
+define("CONF_SITE_ADDR_ZIPCODE", "05207-130");
 
 /**
  * SOCIAL

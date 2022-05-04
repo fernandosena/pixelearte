@@ -218,7 +218,7 @@ body {
   .menu .centro ul {
     list-style: none;
     display: flex;
-    justify-content: space-between; }
+    gap: 10px 20px; }
     .menu .centro ul a {
       color: #4B4B4B;
       text-decoration: none; }
@@ -415,7 +415,7 @@ body {
   margin-top: 10px !important; }
   .produtos-mini .centro .produtos {
     width: 100% !important;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr !important; }
+    grid-template-columns: 1fr 1fr 1fr 1fr !important; }
     .produtos-mini .centro .produtos div.item a {
       font-size: 12px !important; }
     .produtos-mini .centro .produtos div.item .dados .info {
@@ -478,8 +478,8 @@ body {
         margin: 0; }
         #produto-singular .box-conteudo .centro .conteudo .quantidade .radio {
           display: flex;
-          flex-direction: row;
-          justify-content: space-between; }
+          gap: 10px 20px;
+          flex-wrap: wrap; }
           #produto-singular .box-conteudo .centro .conteudo .quantidade .radio label {
             padding: 10px;
             cursor: pointer;

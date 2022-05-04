@@ -91,12 +91,12 @@
                 <?php foreach ($relateds as $related): ?>
                     <?= $v->insert("inc/product", [
                         "id" => $related->id,
+                        "image" => $related->image,
                         "title" => $related->title,
                         "uri" => $related->uri,
-                        "image" => $related->image,
+                        "details" => $related->details,
                         "old_price" => $related->old_price,
-                        "price" => $related->price,
-                        "qtd" => $related->quantity,
+                        "price" => price_symbol($related->variationPrice()->min)." - ".price_symbol($related->variationPrice()->max),
                     ]); ?>
                 <?php endforeach; ?>
             </div>

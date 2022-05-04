@@ -34,9 +34,12 @@
                 <input type="hidden" name="variation" class="variation">
                 <div class="conteudo">
                     <div class="quantidade">
+                        <?php
+                            if(!empty($product->variation()["material"])):
+                        ?>
                         <div>
                             <span>Material</span>
-                            <select name="material_id" class="select" required>
+                            <select name="material_id" class="select material_id" required>
                                 <option value="">Selecione um material</option>
                                 <?php
                                     foreach ($product->variation()["material"] as $materialKey => $materialValue):
@@ -47,9 +50,15 @@
                                 ?>
                             </select>
                         </div>
+                        <?php
+                            endif;
+                        ?>
+                        <?php
+                            if(!empty($product->variation()["print"])):
+                        ?>
                         <div>
                             <span>Impressão</span>
-                            <select name="print_id" class="select" required>
+                            <select name="print_id" class="select print_id" required>
                                 <option value="">Selecione uma impressão</option>
                                 <?php
                                     foreach ($product->variation()["print"] as $printKey => $printValue):
@@ -60,6 +69,12 @@
                                 ?>
                             </select>
                         </div>
+                        <?php
+                            endif;
+                        ?>
+                        <?php
+                            if(!empty($product->variation()["print"])):
+                        ?>
                         <div>
                             <span>Quantidade</span>
                             <div class="radio">
@@ -67,13 +82,16 @@
                                     foreach ($product->variation()["quantity"] as $quantityKey => $quantityValue):
                                 ?>
                                     <label>
-                                        <input required type="radio" name="quantity_id" class="select" value="<?= $quantityKey ?>"><?= $quantityValue ?> Uni.</input>
+                                        <input required type="radio" name="quantity_id" class="select quantity_id" value="<?= $quantityKey ?>"><?= $quantityValue ?> Uni.</input>
                                     </label>
                                 <?php
                                     endforeach;
                                 ?>
                             </div>
                         </div>
+                        <?php
+                            endif;
+                        ?>
                     </div>
                     <div class="observacoes">
                         <div>

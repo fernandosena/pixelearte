@@ -54,10 +54,19 @@
                         </select>
                     </label>
                     <label class="label">
-                        <span class="legend">Quantidade:</span>
-                        <input type="text" class="money" placeholder="Valor da variação" name="price">
+                        <span class="legend">Tamanho:</span>
+                        <select name="size">
+                            <option value="" selected>Selecione um tamanho</option>
+                            <?php foreach ($sizes as $size): ?>
+                                <option value="<?= $size->id; ?>"><?= $size->size; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </label>
                 </div>
+                <label class="label">
+                    <span class="legend">Quantidade:</span>
+                    <input type="text" class="money" placeholder="Valor da variação" name="price">
+                </label>
                 <div class="al-right">
                     <button class="btn btn-green icon-check-square-o">Cadastrar</button>
                 </div>

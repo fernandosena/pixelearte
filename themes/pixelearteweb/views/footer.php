@@ -10,7 +10,6 @@
                <nav>
                    <ul>
                        <li><a href="<?= url()?>">Home</a></li>
-                       <li><a href="<?= url("/sobre")?>">Sobre</a></li>
                    </ul>
                </nav>
            </div>
@@ -18,7 +17,7 @@
                <h3>Fale conosco</h3>
                <div class="endereco">
                    <p><i class="fa-solid fa-location-dot"></i></p>
-                   <address>Magalhães Lemos, Nº 203,  05207-130 - São Paulo - SP</address>
+                   <address><?= CONF_SITE_ADDR_STREET ?>, Nº <?= CONF_SITE_ADDR_NUMBER ?>,  <?= CONF_SITE_ADDR_ZIPCODE ?> - <?= CONF_SITE_ADDR_CITY ?> - <?= CONF_SITE_ADDR_STATE ?></address>
                </div>
                <div class="email">
                    <p><i class="fa-solid fa-envelope"></i></p>
@@ -26,7 +25,8 @@
                </div>
                <div class="horario">
                    <p>Horário de Atendimento:
-                       segunda a sexta, das 9h às 18h.</p>
+                       segunda a sexta - 9h às 18h<br>
+                       Sábados - 9h às 14h</p>
                </div>
            </div>
            <div>

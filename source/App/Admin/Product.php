@@ -6,6 +6,7 @@ use Source\Models\Category;
 use Source\Models\Product\ProductMaterial;
 use Source\Models\Product\ProductPrint;
 use Source\Models\Product\ProductQuantity;
+use Source\Models\Product\ProductSize;
 use Source\Models\Product\ProductVariation;
 use Source\Models\User;
 use Source\Support\Pager;
@@ -442,8 +443,9 @@ class Product extends Admin
                 "product_id = :p AND 
                         print_id = :pr AND
                         material_id = :m AND 
-                        quantity_id = :q",
-                "p={$data["id"]}&pr={$data["print"]}&m={$data["material"]}&q={$data["quantity"]}"
+                        quantity_id = :q AND 
+                        size_id = :s",
+                "p={$data["id"]}&pr={$data["print"]}&m={$data["material"]}&q={$data["quantity"]}&s={$data["size"]}"
             )->fetch();
             if($verifica){
                 $json["message"] = $this->message->warning("Essa variação de produto já existe cadastrado")->render();
@@ -457,6 +459,7 @@ class Product extends Admin
             $variation->print_id = $data["print"];
             $variation->material_id = $data["material"];
             $variation->quantity_id = $data["quantity"];
+            $variation->size_id = $data["size"];
             $variation->price = str_replace(",", ".",str_replace(".","",$data["price"]));
 
             $variation->save();
@@ -479,7 +482,8 @@ class Product extends Admin
             "product" => (new \Source\Models\Product())->findById($data["product_id"]),
             "impressions" => (new ProductPrint())->find()->fetch(true),
             "quantities" => (new ProductQuantity())->find()->fetch(true),
-            "materials" => (new ProductMaterial())->find()->fetch(true)
+            "materials" => (new ProductMaterial())->find()->fetch(true),
+            "sizes" => (new ProductSize())->find()->fetch(true)
         ]);
     }
 

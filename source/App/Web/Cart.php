@@ -119,14 +119,25 @@ class Cart extends Controller
     public function add(?array $data): void
     {
         if(!empty($data["calc"])){
+            $qtd = null;
+
             $material = (!empty($data["material_id"]) ? " = '{$data["material_id"]}'" : "IS NULL");
             $print = (!empty($data["print_id"]) ? " = '{$data["print_id"]}'" : "IS NULL");
             $quantity = (!empty($data["quantity_id"]) ? " = '{$data["quantity_id"]}'" : "IS NULL");
 
             $product = (new ProductVariation())
-                ->find("material_id {$material} AND print_id {$print} AND quantity_id {$quantity}")
+                ->find("product_id = {$data["id"]} AND material_id {$material} AND print_id {$print} AND quantity_id {$quantity}")
                 ->fetch();
-            echo json_encode(["idVariation"=> ($product->id ?? null),"price"=>(!empty($product->price) ? price_symbol($product->price): price_symbol(0))]);
+            $variation = (new ProductVariation())->find("product_id = {$data["id"]} AND print_id {$print}")
+                ->fetch(true);
+
+            if($variation){
+                foreach ($variation as $item) {
+                    $qtd .= "<label><input onclick='quantidade(".$item->quantity()[0]->id.")' required type='radio' name='quantity_id' class='select' value='".$item->quantity()[0]->id."'>{$item->quantity()[0]->value} Uni.</label>";
+                }
+            }
+
+            echo json_encode(["radio" => $qtd, "idVariation"=> ($product->id ?? null),"price"=>(!empty($product->price) ? price_symbol($product->price): price_symbol(0))]);
             return;
         }
 

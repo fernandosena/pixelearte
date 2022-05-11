@@ -208,6 +208,7 @@ $route->post("/update", "Pay:update");
 /**
  * ERROR ROUTES
  */
+$route->namespace("Source\App\Web");
 $route->group("/ops");
 $route->get("/{errcode}", "Web:error");
 

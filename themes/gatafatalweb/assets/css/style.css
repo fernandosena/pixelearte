@@ -10,6 +10,7 @@ body{
 }
 .logo{
     width: 150px;
+    height: 50px;
 }
 .bg-color-primary{
     background-color: var(--color-primary);
@@ -57,6 +58,22 @@ body{
     color: var(--color-second);
 }
 
+#banner-models .title{
+    font-size: 30px;
+    padding: 20px 40px;
+    display: block;
+    width: 40%;
+    text-align: left;
+}
+.searcch span{
+    left: 10px;
+    top: 5px;
+    z-index: 99;
+    position: absolute;
+}
+.searcch input{
+    padding: 0 40px;
+}
 /*BANNER*/
 /* Arrows */
 .slick-prev{
@@ -155,13 +172,6 @@ slick-next:hover, slick-next:before{
 #banner-models{
     margin-top: 60px;
 }
-#banner-models .title{
-    font-size: 30px;
-    padding: 20px 40px;
-    display: block;
-    width: 40%;
-    text-align: left;
-}
 #banner-models h2{
     width: 30%;
     text-transform: uppercase;
@@ -232,4 +242,16 @@ slick-next:hover, slick-next:before{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+footer .social i{
+    font-size: 30px;
+    margin: 0 5px;
+}
+.modal .texto{
+    display: flex;
+    align-items: center;
+    gap: 10px 20px;
+}
+.modal .texto i{
+    cursor: pointer;
 }

@@ -1,9 +1,7 @@
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
     <!-- Section: Social media -->
-    <section
-        class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
-    >
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom" >
         <!-- Left -->
         <div class="me-5 d-none d-lg-block">
             <span>Conecte-se conosco nas redes sociais:</span>
@@ -11,7 +9,7 @@
         <!-- Left -->
 
         <!-- Right -->
-        <div>
+        <div class="social">
             <a href="" class="me-4 text-reset">
                 <i class="fa fa-facebook-official" aria-hidden="true"></i>
             </a>
@@ -85,3 +83,21 @@
     <!-- Copyright -->
 </footer>
 <!-- Footer -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="texto">
+                    <i data-dismiss="modal" aria-label="Close" class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <h4 class="modal-title">BUSCAR <strong>CIDADE</strong></h4>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>

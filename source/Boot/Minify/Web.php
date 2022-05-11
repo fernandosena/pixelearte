@@ -5,11 +5,9 @@ if (strpos(url(), "localhost")) {
      */
     $minCSS = new MatthiasMullie\Minify\CSS();
     //SAHARED
-    $minCSS->add(__DIR__ . "/../../../shared/plugins/slick-1.8.1/slick/slick.css");
-    $minCSS->add(__DIR__ . "/../../../shared/plugins/slick-1.8.1/slick/slick-theme.css");
 
     //THEME
-    $minCSS->add(__DIR__ . "/../../../themes/" . CONF_VIEW_THEME . "/assets/css/style.css");
+//    $minCSS->add(__DIR__ . "/../../../themes/gatafatalweb/assets/css/app.css");
 
     //Minify CSS
     $minCSS->minify(__DIR__ . "/../../../themes/" . CONF_VIEW_THEME . "/assets/style.css");
@@ -20,13 +18,9 @@ if (strpos(url(), "localhost")) {
     $minJS = new MatthiasMullie\Minify\JS();
 
     //SAHARED
-    $minJS->add(__DIR__ . "/../../../shared/plugins/jquery-3.6.0/jquery-3.6.0.min.js");
-    $minJS->add(__DIR__ . "/../../../shared/plugins/jquery.form-4.3.0/jquery.form.min.js");
-    $minJS->add(__DIR__ . "/../../../shared/plugins/slick-1.8.1/slick/slick.min.js");
-    $minJS->add(__DIR__ . "/../../../shared/scripts/script.js");
+//    $minJS->add(__DIR__ . "/../../../themes/gatafatalweb/assets/js/home/home.js");
 
     //THEME
-    $minJS->add(__DIR__ . "/../../../themes/" . CONF_VIEW_THEME . "/assets/js/script.js");
 
 
     //Minify JS

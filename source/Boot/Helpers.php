@@ -254,6 +254,29 @@ function str_code($text)
 
     return str_replace(array_keys($array), array_values($array), $text);
 }
+
+function genre($genre, $icone = true): string
+{
+    $str = null;
+    $icon = null;
+
+    switch ($genre){
+        case "M":
+            $str = "Masculino";
+            break;
+        case "F":
+            $str = "Feminino";
+            break;
+        default:
+            $str = "Não definido";
+            break;
+    }
+    if($icone){
+        $icon = '<i class="fa fa-transgender-alt" aria-hidden="true"></i>';
+    }
+
+    return "{$icon} {$str}";
+}
 /**
  * ###############
  * ###   URL   ###

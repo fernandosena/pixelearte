@@ -15,12 +15,12 @@ class Banner extends Model
      */
     public function __construct()
     {
-        parent::__construct("banners", ["id"], ["product", "image"]);
+        parent::__construct("banners", ["id"], ["user_id", "cove"]);
         return $this;
     }
 
-    public function product(): Product
+    public function user(): User
     {
-        return (new Product())->findById($this->product);
+        return (new User())->findById($this->user_id);
     }
 }

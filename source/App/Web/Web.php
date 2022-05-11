@@ -3,6 +3,7 @@
 namespace Source\App\Web;
 
 use Source\Core\Controller;
+use Source\Models\Address;
 use Source\Models\Auth;
 use Source\Models\Banner;
 use Source\Models\Category;
@@ -10,6 +11,7 @@ use Source\Models\Faq\Subcategory;
 use Source\Models\Post;
 use Source\Models\Report\Access;
 use Source\Models\Report\Online;
+use Source\Models\State;
 use Source\Models\User;
 use Source\Support\Pager;
 
@@ -44,20 +46,10 @@ class Web extends Controller
 
         echo $this->view->render("home", [
             "head" => $head,
-            "categories" => (new Category())
-                ->find("type = 'product'")
-                ->fetch(true),
             "banners" => (new Banner())
                 ->find()
-                ->order("position")
                 ->fetch(true),
-            "products" => (new \Source\Models\Product())
-                ->find()
-                ->limit(12)
-                ->fetch(true),
-            "menu" => (new Category())
-                ->find()
-                ->limit(5)
+            "states" => (new State())->find("id IN(1,2)")
                 ->fetch(true)
         ]);
     }

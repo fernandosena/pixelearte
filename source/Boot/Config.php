@@ -5,18 +5,18 @@
 define("CONF_DB_HOST", "localhost");
 define("CONF_DB_USER", "root");
 define("CONF_DB_PASS", "");
-define("CONF_DB_NAME", "pixelearte");
+define("CONF_DB_NAME", "gatafatal");
 
 /**
  * PROJECT URLs
  */
 define("CONF_URL_BASE", "https://www.pixelearte.com.br");
-define("CONF_URL_TEST", "http://localhost/pixelearte");
+define("CONF_URL_TEST", "http://localhost/gatafatal");
 
 /**
  * SITE
  */
-define("CONF_SITE_NAME", "Pixel&Arte");
+define("CONF_SITE_NAME", "Gata Fatal");
 define("CONF_SITE_TITLE", "Somos Mais que uma Gráfica");
 define("CONF_SITE_DESC",
     "A ".CONF_SITE_NAME." é mais que uma gráfica que veio te trazer agilidade e qualidade na confecção de seus produtos, tags, cartões, adesivos, flyers e outros.");
@@ -25,7 +25,7 @@ define("CONF_SITE_DOMAIN", "pixelearte.com.br");
 define("CONF_SITE_EMAIL", [
     "SAC"=>"sac@pixelearte.com.br"
 ]);
-define("CONF_SITE_ADDR_STREET", "Magalhães Lemos, São Paulo");
+define("CONF_SITE_ADDR_STREET", "Magalhães Lemos");
 define("CONF_SITE_ADDR_NUMBER", "203");
 define("CONF_SITE_ADDR_COMPLEMENT", null);
 define("CONF_SITE_ADDR_CITY", "São Paulo");
@@ -67,7 +67,7 @@ define("CONF_PASSWD_OPTION", ["cost" => 10]);
  */
 define("CONF_VIEW_PATH", __DIR__ . "/../../shared/views");
 define("CONF_VIEW_EXT", "php");
-define("CONF_VIEW_THEME", "pixelearteweb");
+define("CONF_VIEW_THEME", "gatafatalweb");
 define("CONF_VIEW_APP", "pixeleartepp");
 define("CONF_VIEW_ADMIN", "pixelearteadm");
 

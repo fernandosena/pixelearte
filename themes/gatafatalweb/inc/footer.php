@@ -10,13 +10,13 @@
 
         <!-- Right -->
         <div class="social">
-            <a href="" class="me-4 text-reset">
+            <a href="https://www.facebook.com/<?= CONF_SOCIAL_FACEBOOK_PAGE ?>" target="_blank" class="me-4 text-reset">
                 <i class="fa fa-facebook-official" aria-hidden="true"></i>
             </a>
-            <a href="" class="me-4 text-reset">
+            <a href="https://twitter.com/<?= CONF_SOCIAL_TWITTER_PUBLISHER ?>" target="_blank" class="me-4 text-reset">
                 <i class="fa fa-twitter-square" aria-hidden="true"></i>
             </a>
-            <a href="" class="me-4 text-reset">
+            <a href="https://www.instagram.com/<?= CONF_SOCIAL_INSTAGRAM_PAGE ?>" target="_blank" class="me-4 text-reset">
                 <i class="fa fa-instagram" aria-hidden="true"></i>
             </a>
         </div>
@@ -66,7 +66,7 @@
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                         <?= CONF_SITE_EMAIL["SAC"] ?>
                     </p>
-                    <p><i class="fa fa-phone-square" aria-hidden="true"></i> <?= CONF_SITE_EMAIL["SAC"] ?></p>
+                    <p><i class="fa fa-phone-square" aria-hidden="true"></i> <?= CONF_SITE_PHONE ?></p>
                 </div>
                 <!-- Grid column -->
             </div>

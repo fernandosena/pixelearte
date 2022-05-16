@@ -33,9 +33,9 @@ $route->get("/em/{category}/{page}", "Web:blogCategory");
 
 //auth
 $route->group(null);
-$route->get("/entrar", "Web:login");
+$route->get("/entrar/{type}", "Web:login");
 $route->post("/entrar", "Web:login");
-$route->get("/cadastrar", "Web:register");
+$route->get("/cadastrar/{type}", "Web:register");
 $route->post("/cadastrar", "Web:register");
 $route->get("/recuperar", "Web:forget");
 $route->post("/recuperar", "Web:forget");

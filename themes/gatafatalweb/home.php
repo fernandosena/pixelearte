@@ -53,7 +53,7 @@
                                     </div>
                                     <p>Apenas perfis autênticos. Sujeito à verificação de documentação e mídia de comparação.</p>
                                     <div class="flex justify-center btn-padrao bg-color-second">
-                                        <a href="https://fatalmodel.com/profile/new">Quero ser anunciante!</a>
+                                        <a href="<?= url("/cadastrar/anuciante") ?>">Quero ser anunciante!</a>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -74,7 +74,7 @@
                                         </ul>
                                     </div>
                                     <div class="flex justify-center btn-padrao">
-                                        <a href="https://fatalmodel.com/profile/new">Quero ser contratante!</a>
+                                        <a href="<?= url("/cadastrar/contratante") ?>">Quero ser contratante!</a>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

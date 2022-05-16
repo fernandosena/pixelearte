@@ -31,6 +31,7 @@ define("CONF_SITE_ADDR_COMPLEMENT", null);
 define("CONF_SITE_ADDR_CITY", "São Paulo");
 define("CONF_SITE_ADDR_STATE", "SP");
 define("CONF_SITE_ADDR_ZIPCODE", "05207-130");
+define("CONF_SITE_PHONE", "(11) 9 9999-9999");
 
 /**
  * SOCIAL

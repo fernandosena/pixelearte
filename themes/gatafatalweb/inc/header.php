@@ -23,8 +23,8 @@
                 <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                    class="nav-link link-cadastro dropdown-toggle">CADASTRE-SE GRÁTIS</a>
                 <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                    <li><a href="<?= url("/cadatrar/contratante") ?>" class="dropdown-item">Quero ser contratante</a></li>
-                    <li><a href="<?= url("/cadatrar/anuciante") ?>" class="dropdown-item">Quero ser anuciante</a></li>
+                    <li><a href="<?= url("/cadastrar/contratante") ?>" class="dropdown-item">Quero ser contratante</a></li>
+                    <li><a href="<?= url("/cadastrar/anuciante") ?>" class="dropdown-item">Quero ser anuciante</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
